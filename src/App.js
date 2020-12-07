@@ -8,11 +8,12 @@ import Login from './pages/Login';
 import Checkout from './pages/Checkout';
 import Cart from './pages/Cart';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import NavigationBarTop from './components/NavigationBarTop';
 function App() {
   return (
     <div>
       <Router>
+        <NavigationBarTop />
         <Switch>
           <Route exact path='/'>
             <Home />
