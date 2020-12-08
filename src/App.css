@@ -3,6 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;500;600;700&display=swap');
 /* font-family: 'Oswald', sans-serif; */
 
+/*Media query's converted to em*/
+/* Xpx / 16 = em
+ 75em - 1200px
+/68.75em - 1100px
+56.25em - 900px
+43.75em - 700px
+*/
+
 :root {
   --baseColor: #512c73;
   --baseColor-Dark: #200439;
@@ -16,6 +24,7 @@
 *::after {
   margin: 0;
   padding: 0;
+  box-sizing: inherit;
 }
 
 html {
