@@ -1,15 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
+import  Button from "../components/Button"
 const Error = () => {
   return (
     <Container>
       <h1>Sorry the URL you insert does not exist!</h1>
-      <button>
-        {' '}
+      <div className="wrapper">
+      <Button>
         <Link to='/'>Go back to home</Link>
-      </button>
+      </Button>
+      </div>
     </Container>
   );
 };
@@ -20,26 +21,15 @@ const Container = styled.section`
   max-width: 140rem;
   min-height: 70vh;
   margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  
   h1 {
     text-align: center;
     font-size: 4rem;
   }
-  a {
-    text-decoration: none;
-    color: var(--baseColor-Light-2);
+  .wrapper{
+  margin: 2rem auto;
   }
-  button {
-    display: block;
-    padding: 1.5rem 2rem;
-    font-size: 3rem;
-    border: solid 0.1rem var(--baseColor-Light-2);
-    margin: 2rem auto;
-    background-color: transparent;
-    transition: all 0.3s;
 
-    :hover {
-      background-color: var(--baseColor-Light);
-      transform: translateY(-0.3rem);
-    }
-  }
 `;
