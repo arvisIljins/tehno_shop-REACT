@@ -1,17 +1,7 @@
-import React, { useContext } from 'react';
-import Loading from '../components/Loading';
-import ProductList from '../components/ProductList';
-import { ProductContext } from '../context/products';
+import React from 'react';
 
 const Products = () => {
-  const { loading, products } = useContext(ProductContext);
-  console.log(products);
-
-  return loading ? (
-    <Loading />
-  ) : (
-    <ProductList title='our products' products={products} />
-  );
+  return <div>Product page</div>;
 };
 
 export default Products;
