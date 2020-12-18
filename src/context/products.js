@@ -9,9 +9,11 @@ const ProductProvider = ({ children }) => {
   const [featured, setFeatured] = React.useState([]);
 
   useEffect(() => {
-    axios.get(`${url}/products`).then((items) => console.log(items));
+    axios.get(`${url}/products`).then((response) => {
+      setProducts(response.data);
+    });
     return () => {};
-  });
+  }, []);
 
   return (
     <ProductContext.Provider value={{ products, loading, featured }}>
