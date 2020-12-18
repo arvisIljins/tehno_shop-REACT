@@ -74,7 +74,7 @@ const Header = styled.header`
   }
   @keyframes showNavigation {
     0% {
-      opacity: 10rem;
+      opacity: 0;
       height: 6rem;
     }
     100% {
@@ -115,6 +115,7 @@ const Header = styled.header`
     a {
       text-decoration: none;
       transition: all 0.3s;
+      color: var(--baseColor-Light);
 
       :hover {
         color: var(--baseColor-Light-2);
