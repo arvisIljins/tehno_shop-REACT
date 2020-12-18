@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
+import Loading from '../components/Loading';
+import ProductList from '../components/ProductList';
 import { ProductContext } from '../context/products';
 
 const Products = () => {
-  const { products } = useContext(ProductContext);
+  const { loading, products } = useContext(ProductContext);
   console.log(products);
-  return (
-    <div>
-      <h1>{products[0].title}</h1>
-    </div>
+
+  return loading ? (
+    <Loading />
+  ) : (
+    <ProductList title='our products' products={products} />
   );
 };
 
