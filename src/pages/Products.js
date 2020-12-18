@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ProductContext } from '../context/products';
 
 const Products = () => {
-  return <div>Products</div>;
+  const { products } = useContext(ProductContext);
+  return <div>{products}</div>;
 };
 
 export default Products;
