@@ -3,12 +3,14 @@ import Product from './Product';
 import styled from 'styled-components';
 const ProductList = ({ title, products }) => {
   return (
-    <Section>
-      <h2 className='title'>{title}</h2>
-      {products.map((item) => {
-        return <Product key={item.id} {...item} />;
-      })}
-    </Section>
+    <React.Fragment>
+      <Tile>{title}</Tile>
+      <Section>
+        {products.map((item) => {
+          return <Product key={item.id} {...item} />;
+        })}
+      </Section>
+    </React.Fragment>
   );
 };
 
@@ -16,11 +18,20 @@ export default ProductList;
 
 const Section = styled.section`
   max-width: 140rem;
+  padding: 2rem;
   margin: 0 auto;
-  .title {
-    font-size: 3rem;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  grid-gap: 2rem;
+
+  @media screen and (max-width: 25em) {
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   }
+`;
+
+const Tile = styled.h1`
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 2rem 0;
 `;
