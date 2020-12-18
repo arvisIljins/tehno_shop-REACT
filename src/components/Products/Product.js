@@ -8,7 +8,9 @@ const Product = ({ id, title, image, price }) => {
       <img src={url} alt={title} />
       <h1 className='title'>{title}</h1>
       <h4 className='price'>€{price}</h4>
-      <Link className='button'>Details</Link>
+      <Link to={`products/${id}`} className='button'>
+        Details
+      </Link>
     </Section>
   );
 };
