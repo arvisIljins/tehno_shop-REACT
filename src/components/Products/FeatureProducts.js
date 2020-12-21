@@ -4,11 +4,11 @@ import Loading from '../Loading';
 import ProductList from './ProductList';
 
 const FeatureProducts = () => {
-  const { loading, products, featured } = useContext(ProductContext);
+  const { loading, featured } = useContext(ProductContext);
   return loading ? (
     <Loading />
   ) : (
-    <ProductList title='Top products' products={products} />
+    <ProductList title='Top products' products={featured} />
   );
 };
 
