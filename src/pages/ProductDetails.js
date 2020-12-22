@@ -54,9 +54,9 @@ const SingleProduct = () => {
         <div className='featured_container'>
           <h3 className='feature_title'>Main Features：</h3>
           <div>
-            {specification.map((item) => {
+            {specification.map((item, index) => {
               return (
-                <p className='feature_item' key={item.id}>
+                <p className='feature_item' key={index}>
                   <span>&#10003;</span> {item}
                 </p>
               );
