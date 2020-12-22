@@ -7,7 +7,7 @@ const CartItem = ({ image, title, price }) => {
     <div>
       <h1>{title}</h1>
       <img src={image} alt={title} />
-      <h3>{price}</h3>
+      <h3>€ {price}</h3>
     </div>
   );
 };
