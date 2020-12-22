@@ -10,19 +10,21 @@ const SingleProduct = () => {
   const { products } = useContext(ProductContext);
   //check if id mach
   const product = products.find((item) => item.id === parseInt(id));
-  const {
-    image: { url },
-    title,
-    description,
-    price,
-  } = product;
-  return products.length === 0 ? (
-    <Loading />
-  ) : (
-    <React.Fragment>
-      <h1>{title}</h1>
-    </React.Fragment>
-  );
+  if (products.length === 0) {
+    return <Loading />;
+  } else {
+    const {
+      image: { url },
+      title,
+      description,
+      price,
+    } = product;
+    return (
+      <React.Fragment>
+        <h1>{title}</h1>
+      </React.Fragment>
+    );
+  }
 };
 
 export default SingleProduct;
