@@ -115,7 +115,8 @@ const Section = styled.section`
   .image_row {
     padding: 3rem;
     display: grid;
-    grid-template-columns: repeat(2, 50%);
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
   }
   .product_image {
     width: 100%;
@@ -157,5 +158,34 @@ const Section = styled.section`
   .featured_container {
     padding: 1rem;
     background-color: rgba(5.1, 3.9, 4.7, 0.2);
+  }
+
+  @media screen and (max-width: 43.75em) {
+    .image_row {
+      display: block;
+      padding: 1rem;
+    }
+    .description_container {
+      padding: 0.5rem;
+    }
+    .title {
+      font-size: 2.5rem;
+    }
+    .date_text {
+      letter-spacing: 0.1rem;
+    }
+    .button_back {
+      letter-spacing: 0.1rem;
+    }
+  }
+
+  @media screen and (max-width: 43.75em) {
+    .image_row {
+      display: block;
+      padding: 0.5rem;
+    }
+    .description_container {
+      padding: 0;
+    }
   }
 `;

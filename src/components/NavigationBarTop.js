@@ -17,11 +17,13 @@ export default class NavigationBarTop extends Component {
         <button
           type='button'
           className='navigation__btn'
-          onClick={this.mobileNavOpen}>
+          onClick={this.mobileNavOpen}
+        >
           <span
             className={
               this.state.isOpen ? 'navigation__icon--close' : 'navigation__icon'
-            }>
+            }
+          >
             &nbsp;
           </span>
         </button>
@@ -31,7 +33,8 @@ export default class NavigationBarTop extends Component {
               this.state.isOpen
                 ? 'header__list header__list-show'
                 : 'header__list header__list-hide'
-            }>
+            }
+          >
             <div className='header__list__catalog'>
               <li className='header__list__link'>
                 <Link to='/'>Home</Link>
@@ -227,6 +230,11 @@ const Header = styled.header`
     }
     .header__list-hide {
       display: none;
+    }
+    @media screen and (max-width: 25em) {
+      .header__logo {
+        font-size: 3rem;
+      }
     }
   }
 `;
