@@ -47,4 +47,13 @@ const Section = styled.section`
     text-align: center;
     color: var(--baseColor-Light);
   }
+
+  @media screen and (max-width: 25em) {
+    .cart_total {
+      font-size: 2rem;
+    }
+    .title {
+      font-size: 2.5rem;
+    }
+  }
 `;
