@@ -5,7 +5,11 @@ import { useHistory } from 'react-router-dom';
 import Loading from '../components/Loading';
 import styled from 'styled-components';
 import Button from '../components/Button';
+import { CartContext } from '../context/cart';
+
 const SingleProduct = () => {
+  const history = useHistory();
+  const { addToCart } = useContext(CartContext);
   // Id for exact page
   //console.log(useParams());
   const { id } = useParams();
@@ -48,7 +52,14 @@ const SingleProduct = () => {
             <h2 className='product_price'>€ {price}</h2>
             <div className='description_container-text'>{description}</div>
             <h3 className='shipping_text'>Free shipping</h3>
-            <Button>Add to cart</Button>
+            <Button
+              onClick={() => {
+                addToCart(product);
+                history.push('/cart');
+              }}
+            >
+              Add to cart
+            </Button>
           </div>
         </div>
         <div className='featured_container'>

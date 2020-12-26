@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 const Product = ({ id, title, image, price }) => {
   const url = image.url;
+
   return (
     <Section>
       <img src={url} alt={title} />

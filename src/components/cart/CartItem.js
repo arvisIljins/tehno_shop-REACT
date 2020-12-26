@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
+//import { Link, useParams } from 'react-router-dom';
 import { CartContext } from '../../context/cart';
 import styled from 'styled-components';
 
@@ -10,7 +10,7 @@ const CartItem = ({ id, amount, image, title, price }) => {
 
   return (
     <Section>
-      <img className='item_picture' src={image} alt={title} />
+      <img className='item_picture' src={image.url} alt={title} />
       <h1 className='item_title'>{title}</h1>
       <h3 className='item-price'>€ {price}</h3>
       <div className='item_update'>

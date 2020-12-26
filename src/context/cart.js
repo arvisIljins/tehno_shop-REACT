@@ -1,10 +1,9 @@
 import React, { createContext, useEffect } from 'react';
-import TestCart from '../utils/TestCart';
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = React.useState(TestCart);
+  const [cart, setCart] = React.useState([]);
   const [total, setTotal] = React.useState(0);
   const [cartItem, setCartItem] = React.useState(0);
 
@@ -60,6 +59,20 @@ const CartProvider = ({ children }) => {
   const removeAllItems = () => {
     setCart([]);
   };
+
+  //Remove all items from cart
+  const addToCart = (product) => {
+    const { id, title, price, image } = product;
+    const item = [...cart].find((item) => item.id === id);
+
+    if (item) {
+      increaseAmount(id);
+    } else {
+      const newItem = { id, title, price, image, amount: 1 };
+      const newCart = [...cart, newItem];
+      setCart(newCart);
+    }
+  };
   return (
     <CartContext.Provider
       value={{
@@ -70,6 +83,7 @@ const CartProvider = ({ children }) => {
         increaseAmount,
         decreaseAmount,
         removeAllItems,
+        addToCart,
       }}
     >
       {children}
