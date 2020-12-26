@@ -20,16 +20,30 @@ const CartProvider = ({ children }) => {
     }, 0);
     newTotal = parseFloat(newTotal.toFixed(2));
     setTotal(newTotal);
-    // Delete item
   }, [cart]);
 
   //Delete Item
   const deleteItem = (id) => {
     setCart([...cart].filter((item) => item.id !== id));
   };
+  // Increase amount
+  const increaseAmount = (id) => {
+    setCart(
+      [...cart].map((item) => {
+        return item.id === id
+          ? {
+              ...item,
+              amount: item.amount + 1,
+            }
+          : { ...item };
+      })
+    );
+  };
 
   return (
-    <CartContext.Provider value={{ cart, total, cartItem, deleteItem }}>
+    <CartContext.Provider
+      value={{ cart, total, cartItem, deleteItem, increaseAmount }}
+    >
       {children}
     </CartContext.Provider>
   );
