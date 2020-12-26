@@ -15,7 +15,7 @@ const Home = () => {
           secondary='Best deals and powerful new products every day!'
         >
           <Button>
-            <Link to='/'>Shop now</Link>
+            <Link to='/products'>Shop now</Link>
           </Button>
         </Banner>
       </Hero>

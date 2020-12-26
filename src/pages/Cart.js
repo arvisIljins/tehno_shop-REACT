@@ -20,6 +20,7 @@ const Cart = () => {
       <Button to={user ? '/checkout' : '/login'}>
         {user ? 'Checkout' : 'Login'}
       </Button>
+      <br />
       <Button
         onClick={() => {
           removeAllItems();
@@ -54,12 +55,14 @@ const Section = styled.section`
     color: var(--baseColor-Light);
   }
 
-  @media screen and (max-width: 25em) {
+  @media screen and (max-width: 29em) {
+    margin: 1rem auto;
+    padding: 1rem 0.5rem;
     .cart_total {
       font-size: 2rem;
     }
     .title {
-      font-size: 2.5rem;
+      font-size: 3rem;
     }
   }
 `;

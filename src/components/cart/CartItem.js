@@ -116,8 +116,9 @@ const Section = styled.section`
     font-size: 3rem;
   }
 
-  @media screen and (max-width: 25em) {
-    padding: 0.4rem;
+  @media screen and (max-width: 29em) {
+    padding: 0.5rem;
+    margin: 0;
     .item_title {
       font-size: 1rem;
     }
