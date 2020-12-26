@@ -60,15 +60,20 @@ const CartProvider = ({ children }) => {
     setCart([]);
   };
 
-  //Remove all items from cart
+  //Add to cart
   const addToCart = (product) => {
-    const { id, title, price, image } = product;
+    const {
+      id,
+      title,
+      price,
+      image: { url },
+    } = product;
     const item = [...cart].find((item) => item.id === id);
 
     if (item) {
       increaseAmount(id);
     } else {
-      const newItem = { id, title, price, image, amount: 1 };
+      const newItem = { id, title, price, image: url, amount: 1 };
       const newCart = [...cart, newItem];
       setCart(newCart);
     }
