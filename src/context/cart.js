@@ -40,9 +40,32 @@ const CartProvider = ({ children }) => {
     );
   };
 
+  //Decrease amount
+  const decreaseAmount = (id, amount) => {
+    return amount === 1
+      ? deleteItem(id)
+      : setCart(
+          [...cart].map((item) => {
+            return item.id === id
+              ? {
+                  ...item,
+                  amount: item.amount - 1,
+                }
+              : { ...item };
+          })
+        );
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, total, cartItem, deleteItem, increaseAmount }}
+      value={{
+        cart,
+        total,
+        cartItem,
+        deleteItem,
+        increaseAmount,
+        decreaseAmount,
+      }}
     >
       {children}
     </CartContext.Provider>

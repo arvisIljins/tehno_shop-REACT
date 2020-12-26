@@ -4,7 +4,9 @@ import { CartContext } from '../../context/cart';
 import styled from 'styled-components';
 
 const CartItem = ({ id, amount, image, title, price }) => {
-  const { deleteItem, increaseAmount } = useContext(CartContext);
+  const { deleteItem, increaseAmount, decreaseAmount } = useContext(
+    CartContext
+  );
 
   return (
     <Section>
@@ -23,7 +25,7 @@ const CartItem = ({ id, amount, image, title, price }) => {
         <p className='item_update-count'>{amount}</p>
         <button
           onClick={() => {
-            console.log('decrease');
+            decreaseAmount(id, amount);
           }}
           className='item_update-button'
         >
