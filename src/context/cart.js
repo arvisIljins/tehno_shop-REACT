@@ -56,6 +56,10 @@ const CartProvider = ({ children }) => {
         );
   };
 
+  //Remove all items from cart
+  const removeAllItems = () => {
+    setCart([]);
+  };
   return (
     <CartContext.Provider
       value={{
@@ -65,6 +69,7 @@ const CartProvider = ({ children }) => {
         deleteItem,
         increaseAmount,
         decreaseAmount,
+        removeAllItems,
       }}
     >
       {children}

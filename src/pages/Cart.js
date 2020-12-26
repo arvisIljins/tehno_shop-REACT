@@ -4,10 +4,9 @@ import EmptyCart from '../components/cart/EmptyCart';
 import { CartContext } from '../context/cart';
 import Button from '../components/Button';
 import styled from 'styled-components';
-
 const Cart = () => {
   let user = false;
-  const { total, cart } = useContext(CartContext);
+  const { total, cart, removeAllItems } = useContext(CartContext);
   //console.log({ total, cart });
   return cart <= 0 ? (
     <EmptyCart />
@@ -20,6 +19,13 @@ const Cart = () => {
       <h2 className='cart_total'>Total: € {total}</h2>
       <Button to={user ? '/checkout' : '/login'}>
         {user ? 'Checkout' : 'Login'}
+      </Button>
+      <Button
+        onClick={() => {
+          removeAllItems();
+        }}
+      >
+        Remove all
       </Button>
     </Section>
   );
