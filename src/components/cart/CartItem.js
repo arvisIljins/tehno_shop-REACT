@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ProductContext } from '../../context/products';
+import { CartContext } from '../../context/cart';
 import styled from 'styled-components';
 
 const CartItem = ({ id, amount, image, title, price }) => {
+  const { deleteItem } = useContext(CartContext);
+
   return (
     <Section>
       <img className='item_picture' src={image} alt={title} />
@@ -30,7 +32,7 @@ const CartItem = ({ id, amount, image, title, price }) => {
       </div>
       <button
         onClick={() => {
-          console.log('remove item');
+          deleteItem(id);
         }}
         className='item_update-button red'
       >

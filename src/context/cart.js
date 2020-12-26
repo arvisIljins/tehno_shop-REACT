@@ -20,10 +20,14 @@ const CartProvider = ({ children }) => {
     }, 0);
     newTotal = parseFloat(newTotal.toFixed(2));
     setTotal(newTotal);
+    // Delete item
   }, [cart]);
+
+  //Delete Item
   const deleteItem = (id) => {
-    console.log('delete');
+    setCart([...cart].filter((item) => item.id !== id));
   };
+
   return (
     <CartContext.Provider value={{ cart, total, cartItem, deleteItem }}>
       {children}
