@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaShoppingCart } from 'react-icons/fa';
+import CartAmount from './cart/CartAmount';
 
 export default class NavigationBarTop extends Component {
   state = {
@@ -51,11 +52,14 @@ export default class NavigationBarTop extends Component {
                 <Link to='/cart'>Login</Link>
               </li>
               <li className='header__list__link'>
-                <Link to='/cart'>
-                  Cart{' '}
-                  <span>
+                <Link className='cart_container' to='/cart'>
+                  Cart
+                  <div className='cart_container-icon'>
                     <FaShoppingCart />
-                  </span>
+                    <span className='cart_container-amount'>
+                      <CartAmount />
+                    </span>
+                  </div>
                 </Link>
               </li>
             </div>
@@ -100,6 +104,7 @@ const Header = styled.header`
     justify-content: space-between;
     list-style: none;
   }
+
   .header__list__catalog {
     display: flex;
   }
@@ -125,7 +130,19 @@ const Header = styled.header`
       }
     }
   }
-
+  .cart_container {
+    display: flex;
+    justify-content: center;
+  }
+  .cart_container-icon {
+    position: relative;
+  }
+  .cart_container-amount {
+    font-size: 1.5rem;
+    position: absolute;
+    top: -30%;
+    right: 20%;
+  }
   //Mobile nav icon
   .navigation__btn {
     margin: 0 auto;
