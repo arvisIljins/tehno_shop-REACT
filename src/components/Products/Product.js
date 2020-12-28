@@ -62,8 +62,8 @@ const Section = styled.section`
   img {
     display: block;
     padding: 2rem;
-    width: 100%;
-    height: auto;
+    width: auto;
+    max-height: 25rem;
     margin: 0 auto;
   }
   .title {

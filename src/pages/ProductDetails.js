@@ -130,7 +130,9 @@ const Section = styled.section`
     grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
   }
   .product_image {
-    width: 100%;
+    margin: 0 auto;
+    width: auto;
+    max-height: 35rem;
   }
   .description_container {
     padding: 2rem;
