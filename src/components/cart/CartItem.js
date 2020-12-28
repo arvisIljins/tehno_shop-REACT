@@ -12,12 +12,12 @@ const CartItem = ({ id, amount, image, title, price, Shipping }) => {
     <Section>
       <img className='item_picture' src={image} alt={title} />
       <h1 className='item_title'>{title}</h1>
-      <h3 className='item-price'>€ {price}</h3>
-      <h3>
-        {Shipping === null
-          ? 'Free shipping'
-          : `Shipping coust is € ${Shipping}`}
-      </h3>
+      <div className='item-coust'>
+        <h3 className='item-price'>€ {price}</h3>
+        <h3 className='item-shipping'>
+          {Shipping === null ? 'Free shipping' : `+ shipping € ${Shipping}`}
+        </h3>
+      </div>
       <div className='item_update'>
         <button
           onClick={() => {
@@ -86,9 +86,17 @@ const Section = styled.section`
     font-weight: 300;
     letter-spacing: 0.2rem;
     font-size: 3rem;
-    padding: 0 1rem;
+  }
+  .item-coust {
     text-align: right;
     flex-grow: 1;
+    padding: 0 1rem;
+  }
+  .item-shipping {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+    font-size: 1rem;
   }
   .item_update {
     display: block;
