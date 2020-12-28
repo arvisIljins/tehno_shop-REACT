@@ -97,4 +97,10 @@ const Section = styled.section`
       font-size: 1.5rem;
     }
   }
+  @media screen and (max-width: 25em) {
+    img {
+      width: 100%;
+      padding: 0.5rem;
+    }
+  }
 `;
