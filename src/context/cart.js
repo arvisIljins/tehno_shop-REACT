@@ -74,6 +74,7 @@ const CartProvider = ({ children }) => {
       id,
       title,
       price,
+      Shipping,
       image: { url },
     } = product;
     const item = [...cart].find((item) => item.id === id);
@@ -81,7 +82,14 @@ const CartProvider = ({ children }) => {
     if (item) {
       increaseAmount(id);
     } else {
-      const newItem = { id, title, price, image: url, amount: 1 };
+      const newItem = {
+        id,
+        title,
+        price,
+        Shipping,
+        image: url,
+        amount: 1,
+      };
       const newCart = [...cart, newItem];
       setCart(newCart);
     }

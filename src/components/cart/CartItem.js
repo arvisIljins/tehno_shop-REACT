@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../context/cart';
 import styled from 'styled-components';
 
-const CartItem = ({ id, amount, image, title, price }) => {
+const CartItem = ({ id, amount, image, title, price, Shipping }) => {
   const { deleteItem, increaseAmount, decreaseAmount } = useContext(
     CartContext
   );
@@ -13,6 +13,11 @@ const CartItem = ({ id, amount, image, title, price }) => {
       <img className='item_picture' src={image} alt={title} />
       <h1 className='item_title'>{title}</h1>
       <h3 className='item-price'>€ {price}</h3>
+      <h3>
+        {Shipping === null
+          ? 'Free shipping'
+          : `Shipping coust is € ${Shipping}`}
+      </h3>
       <div className='item_update'>
         <button
           onClick={() => {

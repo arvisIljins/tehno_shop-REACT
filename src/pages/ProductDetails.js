@@ -28,6 +28,7 @@ const SingleProduct = () => {
       price,
       created_at,
       specification,
+      Shipping,
     } = product;
 
     return (
@@ -44,7 +45,12 @@ const SingleProduct = () => {
           <div className='description_container'>
             <h2 className='product_price'>€ {price}</h2>
             <div className='description_container-text'>{description}</div>
-            <h3 className='shipping_text'>Free shipping</h3>
+
+            <h3 className='shipping_text'>
+              {Shipping === null
+                ? 'Free shipping'
+                : `Shipping coust is € ${Shipping}`}
+            </h3>
             <Button
               onClick={() => {
                 addToCart(product);

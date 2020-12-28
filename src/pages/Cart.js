@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const Cart = () => {
   let user = false;
   const { total, cart, removeAllItems } = useContext(CartContext);
-  //console.log({ total, cart });
+  console.log({ cart });
   return cart <= 0 ? (
     <EmptyCart />
   ) : (
