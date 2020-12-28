@@ -14,17 +14,9 @@ const SingleProduct = () => {
   //console.log(useParams());
   const { id } = useParams();
   const { products } = useContext(ProductContext);
+  console.log(products);
   //check if id mach
   const product = products.find((item) => item.id === parseInt(id));
-
-  const specification = [
-    'Intel Core i5-5257U CPU, Dual Core Low-power desktop platform processor, stable and reliable performance, less delay and lag.',
-    'Intel HD Graphic6100 GPU Better and faster in playing games and watching videos than the previous generation. Meet your requirement for high resolution and give you an enjoyableentertainment experience.',
-    '8GB DDR3 RAM for Advanced Multitasking Allow your PC to run at higher speed. It could deal with multiple task and windows easily at the same time.',
-    '256GB SSD Storage Capacity Provides enough capacity to store pictures, videos, music and more.',
-    'Good Heat Dissipation Performance Built-in excellent cooling fan ensures efficient and rapid heat dissipation. Energy saving, environmental protection, and low power consumption.',
-    'Storage Capacity Expansion Support 128GB - 1TB M.2 SSD / 500GB - 2TB 2.5 inch HDD / 128GB TF card expansion',
-  ];
 
   if (products.length === 0) {
     return <Loading />;
@@ -35,6 +27,7 @@ const SingleProduct = () => {
       description,
       price,
       created_at,
+      specification,
     } = product;
 
     return (
@@ -65,13 +58,17 @@ const SingleProduct = () => {
         <div className='featured_container'>
           <h3 className='feature_title'>Main Features：</h3>
           <div>
-            {specification.map((item, index) => {
-              return (
-                <p className='feature_item' key={index}>
-                  <span>&#10003;</span> {item}
-                </p>
-              );
-            })}
+            {specification === null ? (
+              <p className='feature_item'>No specification</p>
+            ) : (
+              specification.map((item, index) => {
+                return (
+                  <p className='feature_item' key={index}>
+                    <span>&#10003;</span> {item}
+                  </p>
+                );
+              })
+            )}
           </div>
         </div>
       </Section>
