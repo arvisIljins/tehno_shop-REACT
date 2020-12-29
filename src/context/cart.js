@@ -10,7 +10,7 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = React.useState(getCartFromLocalStorage());
-  const [total, setTotal] = React.useState(0);
+  const [subTotal, setSubTotal] = React.useState(0);
   const [cartItem, setCartItem] = React.useState(0);
   const [totalShipping, setShipping] = React.useState(0);
 
@@ -24,12 +24,13 @@ const CartProvider = ({ children }) => {
     }, 0);
     setCartItem(newCartItem);
 
-    //set total
-    let newTotal = cart.reduce((total, cartItem) => {
-      return (total += cartItem.amount * cartItem.price);
+    //set Subtotal
+    let newSubTotal = cart.reduce((subTotal, cartItem) => {
+      return (subTotal += cartItem.amount * cartItem.price);
     }, 0);
-    newTotal = parseFloat(newTotal.toFixed(2));
-    setTotal(newTotal);
+    newSubTotal = parseFloat(newSubTotal.toFixed(2));
+    setSubTotal(newSubTotal);
+    //set Total
 
     //set total shipping
     let newTotalShipping = cart.reduce((totalShipping, cartItem) => {
@@ -108,7 +109,7 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
-        total,
+        subTotal,
         cartItem,
         totalShipping,
         deleteItem,

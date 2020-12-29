@@ -6,11 +6,15 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 const Cart = () => {
   let user = false;
-  const { total, cart, removeAllItems, totalShipping } = useContext(
+  const { subTotal, cart, removeAllItems, totalShipping } = useContext(
     CartContext
   );
 
-  console.log({ cart });
+  //Taxis
+  let taxis = (subTotal + totalShipping) * 0.21;
+  taxis = parseFloat(taxis.toFixed(2));
+
+  // console.log({ cart });
   return cart <= 0 ? (
     <EmptyCart />
   ) : (
@@ -19,9 +23,12 @@ const Cart = () => {
       {cart.map((item) => {
         return <CartItem key={item.id} {...item} />;
       })}
-      <h2 className='cart_total cart_total-small'>Subtotal: € {total}</h2>
+      <h2 className='cart_total cart_total-average'>Subtotal: € {subTotal}</h2>
       <h2 className='cart_total cart_total-small'>
         + Shipping: € {totalShipping}
+      </h2>
+      <h2 className='cart_total cart_total-small'>
+        21% tax included: € {taxis}
       </h2>
       <Button to={user ? '/checkout' : '/login'}>
         {user ? 'Checkout' : 'Login'}
@@ -50,12 +57,19 @@ const Section = styled.section`
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 0.2rem;
-
     padding: 0 2rem;
     text-align: right;
   }
   .cart_total-small {
+    font-size: 1.5rem;
+    color: var(--baseColor-Light);
+  }
+  .cart_total-average {
     font-size: 2rem;
+    color: var(--baseColor-Light);
+  }
+  .cart_total-big {
+    font-size: 3rem;
   }
   .title {
     padding: 1rem 0;
