@@ -9,6 +9,7 @@ import Checkout from './pages/Checkout';
 import Cart from './pages/Cart';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavigationBarTop from './components/NavigationBarTop';
+import Footer from './components/Footer';
 function App() {
   return (
     <div>
@@ -41,6 +42,7 @@ function App() {
             <Error />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );
