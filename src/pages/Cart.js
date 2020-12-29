@@ -6,7 +6,10 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 const Cart = () => {
   let user = false;
-  const { total, cart, removeAllItems } = useContext(CartContext);
+  const { total, cart, removeAllItems, totalShipping } = useContext(
+    CartContext
+  );
+
   console.log({ cart });
   return cart <= 0 ? (
     <EmptyCart />
@@ -16,7 +19,10 @@ const Cart = () => {
       {cart.map((item) => {
         return <CartItem key={item.id} {...item} />;
       })}
-      <h2 className='cart_total'>Total: € {total}</h2>
+      <h2 className='cart_total cart_total-small'>Subtotal: € {total}</h2>
+      <h2 className='cart_total cart_total-small'>
+        + Shipping: € {totalShipping}
+      </h2>
       <Button to={user ? '/checkout' : '/login'}>
         {user ? 'Checkout' : 'Login'}
       </Button>
@@ -44,9 +50,12 @@ const Section = styled.section`
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 0.2rem;
-    font-size: 3rem;
+
     padding: 0 2rem;
     text-align: right;
+  }
+  .cart_total-small {
+    font-size: 2rem;
   }
   .title {
     padding: 1rem 0;

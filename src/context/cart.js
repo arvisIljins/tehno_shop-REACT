@@ -12,21 +12,31 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = React.useState(getCartFromLocalStorage());
   const [total, setTotal] = React.useState(0);
   const [cartItem, setCartItem] = React.useState(0);
+  const [totalShipping, setShipping] = React.useState(0);
 
   useEffect(() => {
     //Local Storage
     localStorage.setItem('cart', JSON.stringify(cart));
+
     //set total amount
     let newCartItem = cart.reduce((total, cartItem) => {
       return (total += cartItem.amount);
     }, 0);
     setCartItem(newCartItem);
+
     //set total
     let newTotal = cart.reduce((total, cartItem) => {
       return (total += cartItem.amount * cartItem.price);
     }, 0);
     newTotal = parseFloat(newTotal.toFixed(2));
     setTotal(newTotal);
+
+    //set total shipping
+    let newTotalShipping = cart.reduce((totalShipping, cartItem) => {
+      return (totalShipping += cartItem.amount * cartItem.Shipping);
+    }, 0);
+    newTotalShipping = parseFloat(newTotalShipping.toFixed(2));
+    setShipping(newTotalShipping);
   }, [cart]);
 
   //Delete Item
@@ -100,6 +110,7 @@ const CartProvider = ({ children }) => {
         cart,
         total,
         cartItem,
+        totalShipping,
         deleteItem,
         increaseAmount,
         decreaseAmount,
