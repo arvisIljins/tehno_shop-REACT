@@ -11,7 +11,7 @@ const Login = () => {
   const [username, setUsername] = React.useState('');
   const [isMember, setIsMember] = React.useState(false);
 
-  let isEmpty = true;
+  let isEmpty = !email && !password;
 
   return (
     <Section>
