@@ -76,7 +76,7 @@ const Login = () => {
         <div className='button_container'>
           {!isEmpty && (
             <Button type='submit' onChange={console.log('click')}>
-              Login
+              {isMember ? 'Register' : 'Login'}
             </Button>
           )}
         </div>
