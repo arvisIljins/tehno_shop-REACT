@@ -49,7 +49,7 @@ export default class NavigationBarTop extends Component {
             </div>
             <div className='header__list__login'>
               <li className='header__list__link'>
-                <Link to='/cart'>Login</Link>
+                <Link to='/login'>Login</Link>
               </li>
               <li className='header__list__link'>
                 <Link className='cart_container' to='/cart'>
