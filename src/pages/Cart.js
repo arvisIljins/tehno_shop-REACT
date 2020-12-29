@@ -14,6 +14,9 @@ const Cart = () => {
   let taxis = (subTotal + totalShipping) * 0.21;
   taxis = parseFloat(taxis.toFixed(2));
 
+  //Total
+  let total = subTotal + totalShipping;
+  total = parseFloat(total.toFixed(2));
   // console.log({ cart });
   return cart <= 0 ? (
     <EmptyCart />
@@ -30,6 +33,7 @@ const Cart = () => {
       <h2 className='cart_total cart_total-small'>
         21% tax included: € {taxis}
       </h2>
+      <h2 className='cart_total cart_total-big'>Total: € {total}</h2>
       <Button to={user ? '/checkout' : '/login'}>
         {user ? 'Checkout' : 'Login'}
       </Button>
