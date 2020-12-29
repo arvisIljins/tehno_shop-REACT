@@ -13,9 +13,14 @@ const Login = () => {
 
   let isEmpty = !email && !password;
 
+  // Toggle Member
+  const toggleMember = () => {
+    setIsMember(!isMember);
+  };
+
   return (
     <Section>
-      <h2 className='section_title'>{isEmpty ? 'sign in' : 'register'}</h2>
+      <h2 className='section_title'>{isMember ? 'register' : 'sign in'}</h2>
 
       <form className='login_form'>
         {/* Email */}
@@ -69,7 +74,9 @@ const Login = () => {
         {isEmpty && (
           <p className='form_description'>
             Please enter your username and password to login or{' '}
-            <span className='register_button'>go to register!</span>
+            <span className='register_button' onClick={() => toggleMember()}>
+              {isMember ? 'go to login' : 'go to register!'}
+            </span>
           </p>
         )}
         {/* Submit button */}
