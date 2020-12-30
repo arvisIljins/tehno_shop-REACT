@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import loginUser from '../components/strapi/loginUser';
 import userRegister from '../components/strapi/userRegister';
 import { UserContext } from '../context/user';
 
 const Login = () => {
-  const history = useHistory();
-  const { userLogin } = useContext(UserContext);
+  const { userLogin, showAlert, alert } = useContext(UserContext);
 
   //States
   const [email, setEmail] = React.useState('');
@@ -37,9 +35,16 @@ const Login = () => {
       } = response.data;
       const newUser = { token, username };
       userLogin(newUser);
-      history.push('/products');
+
+      showAlert({
+        message: `Hey ${username}! You are successfully logged in, enjoy shopping with us!`,
+        type: 'logIn',
+      });
     } else {
-      console.log('not working');
+      showAlert({
+        message: `Hey! There was a problem with your data, please check your username or password and try again!`,
+        type: 'alert',
+      });
     }
   };
 
