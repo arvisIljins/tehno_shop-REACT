@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import loginUser from '../components/strapi/loginUser';
 import userRegister from '../components/strapi/userRegister';
 
 const Login = () => {
@@ -24,10 +25,10 @@ const Login = () => {
     e.preventDefault();
     let response;
     isMember
-      ? console.log(' hello')
+      ? (response = await loginUser({ email, password }))
       : (response = await userRegister({ email, password, username }));
 
-    response ? toggleMember() : console.log('not working');
+    response ? console.log('working') : console.log('not working');
   };
 
   return (
