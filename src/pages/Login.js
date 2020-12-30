@@ -3,9 +3,11 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import loginUser from '../components/strapi/loginUser';
 import userRegister from '../components/strapi/userRegister';
+import { UserContext } from '../context/user';
 
 const Login = () => {
-  const history = useHistory();
+  const value = React.useContext(UserContext);
+  console.log(value);
 
   //States
   const [email, setEmail] = React.useState('');

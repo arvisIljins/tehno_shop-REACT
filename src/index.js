@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { CartProvider } from './context/cart';
 import ProductProvider from './context/products';
+import { UserProvider } from './context/user';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <CartProvider>
-    <ProductProvider>
-      <App />
-    </ProductProvider>
-  </CartProvider>,
+  <UserProvider>
+    <CartProvider>
+      <ProductProvider>
+        <App />
+      </ProductProvider>
+    </CartProvider>
+  </UserProvider>,
   document.getElementById('root')
 );
 
