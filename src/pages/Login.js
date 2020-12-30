@@ -22,6 +22,10 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     //alert
+    showAlert({
+      message: `Accessing user data please wait`,
+      type: 'alert',
+    });
     e.preventDefault();
     let response;
     isMember
