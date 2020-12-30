@@ -8,7 +8,9 @@ export default class NavigationBarTop extends Component {
   state = {
     navbarOpen: false,
   };
-  mobileNavOpen = () => this.setState({ isOpen: !this.state.isOpen });
+  mobileNavOpen = () => this.setState({ navbarOpen: !this.state.navbarOpen });
+
+  mobileNavClose = () => this.setState({ navbarOpen: false });
   render() {
     return (
       <Header>
@@ -22,7 +24,9 @@ export default class NavigationBarTop extends Component {
         >
           <span
             className={
-              this.state.isOpen ? 'navigation__icon--close' : 'navigation__icon'
+              this.state.navbarOpen
+                ? 'navigation__icon--close'
+                : 'navigation__icon'
             }
           >
             &nbsp;
@@ -31,27 +35,27 @@ export default class NavigationBarTop extends Component {
         <nav className='header__nav'>
           <ul
             className={
-              this.state.isOpen
+              this.state.navbarOpen
                 ? 'header__list header__list-show'
                 : 'header__list header__list-hide'
             }
           >
             <div className='header__list__catalog'>
-              <li className='header__list__link' onClick={this.mobileNavOpen}>
+              <li className='header__list__link' onClick={this.mobileNavClose}>
                 <Link to='/'>Home</Link>
               </li>
-              <li className='header__list__link' onClick={this.mobileNavOpen}>
+              <li className='header__list__link' onClick={this.mobileNavClose}>
                 <Link to='/contacts'>Contacts</Link>
               </li>
-              <li className='header__list__link' onClick={this.mobileNavOpen}>
+              <li className='header__list__link' onClick={this.mobileNavClose}>
                 <Link to='/about'>About</Link>
               </li>
             </div>
             <div className='header__list__login'>
-              <li className='header__list__link' onClick={this.mobileNavOpen}>
+              <li className='header__list__link' onClick={this.mobileNavClose}>
                 <Link to='/products'>Products</Link>
               </li>
-              <li className='header__list__link' onClick={this.mobileNavOpen}>
+              <li className='header__list__link' onClick={this.mobileNavClose}>
                 <Link className='cart_container' to='/cart'>
                   Cart
                   <div className='cart_container-icon'>
