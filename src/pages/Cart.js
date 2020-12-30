@@ -4,12 +4,13 @@ import EmptyCart from '../components/cart/EmptyCart';
 import { CartContext } from '../context/cart';
 import Button from '../components/Button';
 import styled from 'styled-components';
+import { UserContext } from '../context/user';
+import { Link } from 'react-router-dom';
 const Cart = () => {
-  let user = false;
   const { subTotal, cart, removeAllItems, totalShipping } = useContext(
     CartContext
   );
-
+  const { user } = useContext(UserContext);
   //Taxis
   let taxis = (subTotal + totalShipping) * 0.21;
   taxis = parseFloat(taxis.toFixed(2));
@@ -34,11 +35,12 @@ const Cart = () => {
         21% tax included: € {taxis}
       </h2>
       <h2 className='cart_total cart_total-big'>Total: € {total}</h2>
-      <Button to={user ? '/checkout' : '/login'}>
-        {user ? 'Checkout' : 'Login'}
-      </Button>
+      <Link className='button' to={user.token ? '/checkout' : '/login'}>
+        {user.token ? 'Checkout' : 'Login'}
+      </Link>
       <br />
       <Button
+        style={{ marginTop: '2rem' }}
         onClick={() => {
           removeAllItems();
         }}
@@ -80,6 +82,22 @@ const Section = styled.section`
     font-size: 4rem;
     text-align: center;
     color: var(--baseColor-Light);
+  }
+
+  .button {
+    text-transform: uppercase;
+    padding: 0.7rem 1.8rem;
+    font-size: 3rem;
+    border: solid 0.1rem var(--baseColor-Light-2);
+    background-color: transparent;
+    transition: all 0.3s;
+    color: var(--baseColor-Light-2);
+    cursor: pointer;
+    text-decoration: none;
+    :hover {
+      background-color: var(--baseColor-Light);
+      transform: translateY(-0.3rem);
+    }
   }
 
   @media screen and (max-width: 29em) {

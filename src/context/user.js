@@ -25,7 +25,6 @@ const UserProvider = ({ children }) => {
   };
 
   // Error message
-
   const [alert, setAlert] = React.useState({
     show: false,
     message: '',
