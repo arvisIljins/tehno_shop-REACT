@@ -50,8 +50,8 @@ const Section = styled.section`
   .login_button {
     font-weight: 500;
     cursor: pointer;
+    color: var(--baseColor-Light);
     border-bottom: solid 0.1rem var(--baseColor-Light);
-
     :hover {
       color: var(--baseColor-Light-2);
     }
