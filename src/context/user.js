@@ -20,11 +20,30 @@ const UserProvider = ({ children }) => {
 
   const userLogOut = () => {
     setUser({ username: null, token: null });
+    //local storage
     localStorage.removeItem('user');
   };
 
+  // Error message
+
+  const [alert, setAlert] = React.useState({
+    show: false,
+    message: '',
+    type: 'logIn',
+  });
+
+  //Show alert
+  const showAlert = ({ message, type = 'logIn' }) => {
+    setAlert({ show: true, message, type });
+  };
+  const closeAlert = () => {
+    setAlert({ ...alert, show: false });
+  };
+
   return (
-    <UserContext.Provider value={{ user, userLogin, userLogOut }}>
+    <UserContext.Provider
+      value={{ user, userLogin, userLogOut, showAlert, closeAlert, alert }}
+    >
       {children}
     </UserContext.Provider>
   );
