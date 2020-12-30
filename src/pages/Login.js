@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import userRegister from '../components/strapi/userRegister';
 
 const Login = () => {
   const history = useHistory();
@@ -16,6 +17,17 @@ const Login = () => {
   // Toggle Member
   const toggleMember = () => {
     setIsMember(!isMember);
+  };
+
+  const handleSubmit = async (e) => {
+    //alert
+    e.preventDefault();
+    let response;
+    isMember
+      ? (response = await userRegister({ email, password, username }))
+      : console.log(' hello');
+
+    response ? console.log(response) : console.log('not working');
   };
 
   return (
@@ -82,7 +94,7 @@ const Login = () => {
         {/* Submit button */}
         <div className='button_container'>
           {!isEmpty && (
-            <Button type='submit' onChange={console.log('click')}>
+            <Button type='submit' onClick={handleSubmit}>
               {isMember ? 'Register' : 'Login'}
             </Button>
           )}
