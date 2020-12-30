@@ -10,10 +10,12 @@ import Cart from './pages/Cart';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavigationBarTop from './components/NavigationBarTop';
 import Footer from './components/Footer';
+import HelloFromUser from './components/HelloFromUser';
 function App() {
   return (
     <div>
       <Router>
+        <HelloFromUser />
         <NavigationBarTop />
         <Switch>
           <Route exact path='/'>
