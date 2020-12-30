@@ -6,21 +6,23 @@ const HelloFromUser = () => {
   const { user, userLogOut } = useContext(UserContext);
   return (
     <Section>
-      {user.username === null ? (
-        <h3 className='user_greeting'>
-          Hey! come here to{' '}
-          <span className='login_button'>
-            <Link to='login'>login</Link>
-          </span>
-        </h3>
-      ) : (
-        <h3 className='user_greeting'>
-          Nice to see you here <span>{user.username} </span>
-          <span onClick={() => userLogOut()} className='login_button'>
-            Logout
-          </span>
-        </h3>
-      )}
+      <div className='container'>
+        {user.username === null ? (
+          <h3 className='user_greeting'>
+            Hey! come here to{' '}
+            <span className='login_button'>
+              <Link to='login'>login</Link>
+            </span>
+          </h3>
+        ) : (
+          <h3 className='user_greeting'>
+            Nice to see you here <span>{user.username} </span>
+            <span onClick={() => userLogOut()} className='login_button'>
+              Logout
+            </span>
+          </h3>
+        )}
+      </div>
     </Section>
   );
 };
@@ -29,6 +31,11 @@ export default HelloFromUser;
 
 const Section = styled.section`
   background-color: var(--baseColor-Dark-3);
+
+  .container {
+    max-width: 155rem;
+    margin: 0 auto;
+  }
 
   .user_greeting {
     text-align: right;
