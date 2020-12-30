@@ -37,21 +37,21 @@ export default class NavigationBarTop extends Component {
             }
           >
             <div className='header__list__catalog'>
-              <li className='header__list__link'>
+              <li className='header__list__link' onClick={this.mobileNavOpen}>
                 <Link to='/'>Home</Link>
               </li>
-              <li className='header__list__link'>
-                <Link to='/products'>Products</Link>
+              <li className='header__list__link' onClick={this.mobileNavOpen}>
+                <Link to='/contacts'>Contacts</Link>
               </li>
-              <li className='header__list__link'>
+              <li className='header__list__link' onClick={this.mobileNavOpen}>
                 <Link to='/about'>About</Link>
               </li>
             </div>
             <div className='header__list__login'>
-              <li className='header__list__link'>
-                <Link to='/login'>Login</Link>
+              <li className='header__list__link' onClick={this.mobileNavOpen}>
+                <Link to='/products'>Products</Link>
               </li>
-              <li className='header__list__link'>
+              <li className='header__list__link' onClick={this.mobileNavOpen}>
                 <Link className='cart_container' to='/cart'>
                   Cart
                   <div className='cart_container-icon'>

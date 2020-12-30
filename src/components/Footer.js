@@ -11,14 +11,17 @@ const Footer = () => {
         <Link to='/' className='footer_buttons'>
           Home
         </Link>
-        <Link to='/products' className='footer_buttons'>
-          Products
+        <Link to='/contacts' className='footer_buttons'>
+          Contacts
         </Link>
         <Link to='/about' className='footer_buttons'>
           About
         </Link>
         <Link to='/login' className='footer_buttons'>
           Login
+        </Link>
+        <Link to='/products' className='footer_buttons'>
+          Products
         </Link>
         <Link to='/cart' className='footer_buttons'>
           Cart
@@ -50,7 +53,7 @@ const Section = styled.section`
     font-size: 1.5rem;
   }
   .footer_button_container {
-    max-width: 60rem;
+    max-width: 65rem;
     margin: 3rem auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));

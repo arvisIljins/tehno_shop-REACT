@@ -99,6 +99,12 @@ const Section = styled.section`
       transform: translateY(-0.3rem);
     }
   }
+  @media screen and (max-width: 43.75em) {
+    .button {
+      padding: 0.8rem 1.5rem;
+      font-size: 2rem;
+    }
+  }
 
   @media screen and (max-width: 29em) {
     margin: 1rem auto;
@@ -108,6 +114,18 @@ const Section = styled.section`
     }
     .title {
       font-size: 3rem;
+    }
+    .cart_total-small {
+      font-size: 1rem;
+    }
+    .cart_total-average {
+      font-size: 1.5rem;
+    }
+    .cart_total-big {
+      font-size: 2rem;
+    }
+    .cart_total {
+      padding: 0 0.5rem;
     }
   }
 `;

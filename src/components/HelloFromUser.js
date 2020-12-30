@@ -63,4 +63,11 @@ const Section = styled.section`
       }
     }
   }
+
+  @media screen and (max-width: 25em) {
+    .user_greeting {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
 `;
