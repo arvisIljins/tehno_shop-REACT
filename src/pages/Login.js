@@ -24,15 +24,15 @@ const Login = () => {
     e.preventDefault();
     let response;
     isMember
-      ? (response = await userRegister({ email, password, username }))
-      : console.log(' hello');
+      ? console.log(' hello')
+      : (response = await userRegister({ email, password, username }));
 
-    response ? console.log(response) : console.log('not working');
+    response ? toggleMember() : console.log('not working');
   };
 
   return (
     <Section>
-      <h2 className='section_title'>{isMember ? 'register' : 'sign in'}</h2>
+      <h2 className='section_title'>{isMember ? 'sign in' : 'register'}</h2>
 
       <form className='login_form'>
         {/* Email */}
@@ -66,7 +66,7 @@ const Login = () => {
           </label>
         </div>
         {/* User */}
-        {isMember && (
+        {!isMember && (
           <div className='form_group'>
             <input
               className='form_input'
@@ -85,9 +85,12 @@ const Login = () => {
         {/* Description text */}
         {isEmpty && (
           <p className='form_description'>
-            Please enter your username and password to login or{' '}
+            {isMember
+              ? 'Please enter your username and password to login or '
+              : 'Please enter your email, password and username to register or '}
+
             <span className='register_button' onClick={() => toggleMember()}>
-              {isMember ? 'go to login' : 'go to register!'}
+              {isMember ? 'go to register!' : 'go to login'}
             </span>
           </p>
         )}
@@ -95,7 +98,7 @@ const Login = () => {
         <div className='button_container'>
           {!isEmpty && (
             <Button type='submit' onClick={handleSubmit}>
-              {isMember ? 'Register' : 'Login'}
+              {isMember ? 'Login' : 'Register'}
             </Button>
           )}
         </div>
