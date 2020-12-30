@@ -1,8 +1,33 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+
 const UserContext = React.createContext();
 
+//Local storage
+const getUserFromLocalStorage = () => {
+  return localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user'))
+    : { username: null, token: null };
+};
+
 const UserProvider = ({ children }) => {
-  return <UserContext.Provider value='user'>{children}</UserContext.Provider>;
+  const [user, setUser] = React.useState(getUserFromLocalStorage());
+
+  const userLogin = (user) => {
+    setUser(user);
+    //Local storage
+    localStorage.setItem('user', JSON.stringify(user));
+  };
+
+  const userLogOut = () => {
+    setUser({ username: null, token: null });
+    localStorage.removeItem('user');
+  };
+
+  return (
+    <UserContext.Provider value={{ user, userLogin, userLogOut }}>
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export { UserProvider, UserContext };

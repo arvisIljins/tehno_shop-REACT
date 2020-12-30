@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import loginUser from '../components/strapi/loginUser';
@@ -6,8 +6,8 @@ import userRegister from '../components/strapi/userRegister';
 import { UserContext } from '../context/user';
 
 const Login = () => {
-  const value = React.useContext(UserContext);
-  console.log(value);
+  const history = useHistory();
+  const { userLogin } = useContext(UserContext);
 
   //States
   const [email, setEmail] = React.useState('');
@@ -30,7 +30,17 @@ const Login = () => {
       ? (response = await loginUser({ email, password }))
       : (response = await userRegister({ email, password, username }));
 
-    response ? console.log('working') : console.log('not working');
+    if (response) {
+      const {
+        jwt: token,
+        user: { username },
+      } = response.data;
+      const newUser = { token, username };
+      userLogin(newUser);
+      history.push('/products');
+    } else {
+      console.log('not working');
+    }
   };
 
   return (
