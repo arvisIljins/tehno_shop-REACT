@@ -5,7 +5,7 @@ import userRegister from '../components/strapi/userRegister';
 import { UserContext } from '../context/user';
 
 const Login = () => {
-  const { userLogin, showAlert, alert } = useContext(UserContext);
+  const { userLogin, showAlert } = useContext(UserContext);
 
   //States
   const [email, setEmail] = React.useState('');

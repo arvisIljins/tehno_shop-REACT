@@ -12,6 +12,7 @@ import NavigationBarTop from './components/NavigationBarTop';
 import Footer from './components/Footer';
 import HelloFromUser from './components/HelloFromUser';
 import Alert from './components/Alert';
+import PrivateRoute from './components/PrivateRoute';
 function App() {
   return (
     <div>
@@ -39,9 +40,9 @@ function App() {
           <Route path='/cart'>
             <Cart />
           </Route>
-          <Route path='/checkout'>
+          <PrivateRoute path='/checkout'>
             <Checkout />
-          </Route>
+          </PrivateRoute>
           <Route path='*'>
             <Error />
           </Route>
