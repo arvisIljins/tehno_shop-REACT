@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { UserContext } from '../context/user';
 import { Link } from 'react-router-dom';
 const Cart = () => {
-  const { subTotal, cart, removeAllItems, totalShipping } = useContext(
+  const { total, subTotal, cart, removeAllItems, totalShipping } = useContext(
     CartContext
   );
   const { user } = useContext(UserContext);
@@ -15,9 +15,6 @@ const Cart = () => {
   let taxis = (subTotal + totalShipping) * 0.21;
   taxis = parseFloat(taxis.toFixed(2));
 
-  //Total
-  let total = subTotal + totalShipping;
-  total = parseFloat(total.toFixed(2));
   // console.log({ cart });
   return cart <= 0 ? (
     <EmptyCart />

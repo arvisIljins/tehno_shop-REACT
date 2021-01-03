@@ -105,9 +105,13 @@ const CartProvider = ({ children }) => {
       setCart(newCart);
     }
   };
+  // Total price
+  let total = subTotal + totalShipping;
+  total = parseFloat(total.toFixed(2));
   return (
     <CartContext.Provider
       value={{
+        total,
         cart,
         subTotal,
         cartItem,
