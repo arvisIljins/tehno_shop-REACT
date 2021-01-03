@@ -282,7 +282,6 @@ const Section = styled.section`
       margin: 2rem 0.5rem;
     }
   }
-  }
 
   @media screen and (max-width: 43.75em) {
     padding: 0.5rem;

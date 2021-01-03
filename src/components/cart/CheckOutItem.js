@@ -68,22 +68,10 @@ const Section = styled.section`
       padding: 0 0.5rem;
     }
     .item-price {
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
-    .item_picture {
-      width: 5rem;
-    }
-    .item_update-count {
-      font-size: 1.5rem;
-      margin: 0 0.5rem;
-    }
-    .item_update-button {
-      font-size: 1.5rem;
-      margin: 0 0.5rem;
-    }
-
-    .red {
-      font-size: 1.5rem;
+    .item-shipping {
+      font-size: 0.5rem;
     }
   }
 `;
