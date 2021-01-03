@@ -6,6 +6,12 @@ import EmptyCart from '../components/cart/EmptyCart';
 import styled from 'styled-components';
 import CheckOutItem from '../components/cart/CheckOutItem';
 import Button from '../components/Button';
+import {
+  CardElement,
+  StripeProvider,
+  Elements,
+  injectStripe,
+} from 'react-stripe-elements';
 
 const Checkout = () => {
   const { cart, total, taxis, clearCart } = useContext(CartContext);
@@ -171,6 +177,10 @@ const Checkout = () => {
           <div className='credit-cart_input'>
             <h4 className='sub-title'>Payment Details:</h4>
             {/* Stripe Elements */}
+            <CardElement
+              style={{ styled }}
+              className='card_input'
+            ></CardElement>
             {/* Card holder name */}
             <div className='form_group'>
               <input
@@ -329,6 +339,20 @@ const Section = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .StripeElement {
+    margin: 2rem;
+    border: solid 0.1rem var(--baseColor-Light);
+    padding: 1rem;
+    display: block;
+    background: var(--payment-Color);
+  }
+
+  .StripeElement--focus {
+    box-shadow: 0 0.3rem 4rem 0 var(--baseColor-Light);
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
   }
 
   @media screen and (max-width: 56.25em) {
