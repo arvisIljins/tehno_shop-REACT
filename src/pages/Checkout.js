@@ -19,9 +19,17 @@ const Checkout = () => {
   const [address, setAddress] = React.useState('');
   const [postcode, setPostcode] = React.useState('');
   const [info, setInfo] = React.useState('');
+  const [cartName, setCartName] = React.useState('');
   const [error, setError] = React.useState('');
   const isEmpty =
-    !name || !phone || !country || !city || !address || !postcode || alert.show;
+    !name ||
+    !phone ||
+    !country ||
+    !city ||
+    !address ||
+    !postcode ||
+    !cartName ||
+    alert.show;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -163,14 +171,29 @@ const Checkout = () => {
           <div className='credit-cart_input'>
             <h4 className='sub-title'>Payment Details:</h4>
             {/* Stripe Elements */}
-
+            {/* Card holder name */}
+            <div className='form_group'>
+              <input
+                className='form_input'
+                placeholder='Card holder full name'
+                required
+                type='text'
+                id='cartName'
+                value={cartName}
+                onChange={(e) => setCartName(e.target.value)}
+              />
+              <label className='form_label' htmlFor='cartName'>
+                Card holder full name
+              </label>
+            </div>
             {/* Strip Error */}
             {error && <p className='error'>{error}</p>}
 
             {/* Submit */}
             {isEmpty ? (
               <p className='error_description'>
-                Please fill out Shipping information section..
+                Please fill out Shipping information section and card holed
+                name..
               </p>
             ) : (
               <div className='pay_now_btn_container'>
