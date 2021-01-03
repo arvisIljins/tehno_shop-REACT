@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import EmptyCart from '../components/cart/EmptyCart';
 import styled from 'styled-components';
 import CheckOutItem from '../components/cart/CheckOutItem';
+import Button from '../components/Button';
 
 const Checkout = () => {
   const { cart, total, taxis, clearCart } = useContext(CartContext);
@@ -19,7 +20,8 @@ const Checkout = () => {
   const [postcode, setPostcode] = React.useState('');
   const [info, setInfo] = React.useState('');
   const [error, setError] = React.useState('');
-  const isEmpty = !name || alert.show;
+  const isEmpty =
+    !name || !phone || !country || !city || !address || !postcode || alert.show;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -160,6 +162,21 @@ const Checkout = () => {
           </div>
           <div className='credit-cart_input'>
             <h4 className='sub-title'>Payment Details:</h4>
+            {/* Stripe Elements */}
+
+            {/* Strip Error */}
+            {error && <p className='error'>{error}</p>}
+
+            {/* Submit */}
+            {isEmpty ? (
+              <p className='error_description'>
+                Please fill out Shipping information section..
+              </p>
+            ) : (
+              <div className='pay_now_btn_container'>
+                <Button>Pay now</Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -273,6 +290,22 @@ const Section = styled.section`
     margin: 2rem;
     padding-bottom: 2rem;
     background-color: var(--overlay-color);
+  }
+
+  .error_description {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+    padding: 2rem 2rem;
+    font-size: 1rem;
+  }
+
+  .pay_now_btn_container {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   @media screen and (max-width: 56.25em) {
