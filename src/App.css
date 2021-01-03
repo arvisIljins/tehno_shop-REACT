@@ -21,6 +21,7 @@
   --baseColor-Light-2: #9277ac;
   --alert: #f54712;
   --success: #88ff00;
+  --overlay-color: rgba(5.1, 3.9, 4.7, 0.2);
 }
 
 *,

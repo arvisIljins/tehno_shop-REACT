@@ -108,10 +108,15 @@ const CartProvider = ({ children }) => {
   // Total price
   let total = subTotal + totalShipping;
   total = parseFloat(total.toFixed(2));
+  //Taxis
+  let taxis = (subTotal + totalShipping) * 0.21;
+  taxis = parseFloat(taxis.toFixed(2));
+
   return (
     <CartContext.Provider
       value={{
         total,
+        taxis,
         cart,
         subTotal,
         cartItem,

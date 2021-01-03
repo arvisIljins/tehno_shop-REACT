@@ -53,7 +53,7 @@ export default CartItem;
 
 const Section = styled.section`
   padding: 1rem;
-  background-color: rgba(5.1, 3.9, 4.7, 0.2);
+  background-color: var(--overlay-color);
   margin: 0.5rem;
   display: flex;
   align-items: center;
