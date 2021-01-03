@@ -66,6 +66,8 @@ const Section = styled.section`
 
   .item_picture {
     width: 7rem;
+    height: 7rem;
+    object-fit: contain;
     transition: all 0.3s;
 
     :hover {
@@ -131,12 +133,16 @@ const Section = styled.section`
 
   @media screen and (max-width: 29em) {
     padding: 0.5rem;
-    margin: 0;
+    margin: 0.5rem;
     .item_title {
+      padding: 0 0.5rem;
       font-size: 1rem;
     }
     .item-price {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
+    }
+    .item-shipping {
+      font-size: 0.7rem;
     }
     .item_picture {
       width: 5rem;
