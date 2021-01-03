@@ -6,16 +6,11 @@ import EmptyCart from '../components/cart/EmptyCart';
 import styled from 'styled-components';
 import CheckOutItem from '../components/cart/CheckOutItem';
 import Button from '../components/Button';
-import {
-  CardElement,
-  StripeProvider,
-  Elements,
-  injectStripe,
-} from 'react-stripe-elements';
+import { CardElement } from 'react-stripe-elements';
 
-const Checkout = () => {
+const Checkout = (props) => {
   const { cart, total, taxis, clearCart } = useContext(CartContext);
-  const { user, hideAlert, showAlert, alert } = useContext(UserContext);
+  const { user, closeAlert, showAlert, alert } = useContext(UserContext);
   const history = useHistory();
   //States
   const [name, setName] = React.useState('');
@@ -38,7 +33,20 @@ const Checkout = () => {
     alert.show;
 
   async function handleSubmit(e) {
+    showAlert({ message: 'Accessing user data please wait..', type: '' });
+
     e.preventDefault();
+    const response = await props.stripe
+      .createToken()
+      .catch((error) => console.log(error));
+
+    const { token } = response;
+    if (token) {
+      console.log(token);
+    } else {
+      closeAlert();
+      setError(response.error.message);
+    }
   }
   return cart.length < 1 ? (
     <EmptyCart />
@@ -176,11 +184,9 @@ const Checkout = () => {
           </div>
           <div className='credit-cart_input'>
             <h4 className='sub-title'>Payment Details:</h4>
+
             {/* Stripe Elements */}
-            <CardElement
-              style={{ styled }}
-              className='card_input'
-            ></CardElement>
+            <CardElement></CardElement>
             {/* Card holder name */}
             <div className='form_group'>
               <input
@@ -197,8 +203,7 @@ const Checkout = () => {
               </label>
             </div>
             {/* Strip Error */}
-            {error && <p className='error'>{error}</p>}
-
+            {error && <p className='error_description'>{error}</p>}
             {/* Submit */}
             {isEmpty ? (
               <p className='error_description'>
@@ -207,7 +212,7 @@ const Checkout = () => {
               </p>
             ) : (
               <div className='pay_now_btn_container'>
-                <Button>Pay now</Button>
+                <Button onClick={handleSubmit}>Pay now</Button>
               </div>
             )}
           </div>
@@ -318,9 +323,9 @@ const Section = styled.section`
 
   //Payment Section
   .credit-cart_input {
-    padding-top: 1rem;
     max-width: 50rem;
     margin: 2rem;
+    padding-top: 1rem;
     padding-bottom: 2rem;
     background-color: var(--overlay-color);
   }
@@ -330,7 +335,7 @@ const Section = styled.section`
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 0.2rem;
-    padding: 2rem 2rem;
+    padding: 1rem 2rem;
     font-size: 1rem;
   }
 
@@ -342,7 +347,7 @@ const Section = styled.section`
   }
 
   .StripeElement {
-    margin: 2rem;
+    margin: 3rem;
     border: solid 0.1rem var(--baseColor-Light);
     padding: 1rem;
     display: block;
