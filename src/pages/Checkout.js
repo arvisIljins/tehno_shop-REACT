@@ -7,9 +7,10 @@ import styled from 'styled-components';
 import CheckOutItem from '../components/cart/CheckOutItem';
 import Button from '../components/Button';
 import { CardElement } from 'react-stripe-elements';
+import submitOrder from '../components/strapi/submitOrder';
 
 const Checkout = (props) => {
-  const { cart, total, taxis, clearCart } = useContext(CartContext);
+  const { cart, total, taxis, removeAllItems } = useContext(CartContext);
   const { user, closeAlert, showAlert, alert } = useContext(UserContext);
   const history = useHistory();
   //States
@@ -42,7 +43,35 @@ const Checkout = (props) => {
 
     const { token } = response;
     if (token) {
-      console.log(token);
+      setError('');
+      const { id } = token;
+      let order = await submitOrder({
+        name: name,
+        phone: phone,
+        country: country,
+        city: city,
+        address: address,
+        postcode: postcode,
+        cartName: cartName,
+        info: info,
+        total: total,
+        items: cart,
+        stripeTokenId: id,
+        userToken: user.token,
+      });
+      if (order) {
+        showAlert({
+          message: 'Order was successful, we contact you about order shortly',
+        });
+        removeAllItems();
+        history.push('/');
+        return;
+      } else {
+        showAlert({
+          message: 'There was problem with your order',
+          type: 'error',
+        });
+      }
     } else {
       closeAlert();
       setError(response.error.message);
