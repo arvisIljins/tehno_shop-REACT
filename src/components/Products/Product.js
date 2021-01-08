@@ -1,13 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import freeShippingImg from '../../images/freeShipping.png';
 
-const Product = ({ id, title, image, price }) => {
+const Product = ({ id, title, image, price, Shipping }) => {
   const url = image.url;
-
   return (
     <Section>
-      <img src={url} alt={title} />
+      {Shipping === null && (
+        <FreeShipping>
+          <img
+            className='free_shipping-image'
+            src={freeShippingImg}
+            alt='free shipping'
+          />
+        </FreeShipping>
+      )}
+      <img className='product-image' src={url} alt={title} />
       <h1 className='title'>{title}</h1>
       <h4 className='price'>€{price}</h4>
       <Link to={`products/${id}`} className='button'>
@@ -19,11 +28,28 @@ const Product = ({ id, title, image, price }) => {
 
 export default Product;
 
+const FreeShipping = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 10rem;
+
+  .free_shipping-image {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+  }
+  @media screen and (max-width: 25em) {
+    max-width: 7rem;
+  }
+`;
+
 const Section = styled.section`
   background-color: var(--baseColor-Dark);
   padding: 2rem;
   overflow: hidden;
   transition: all 0.3s;
+  position: relative;
 
   :hover {
     box-shadow: 0 0 1rem 1px var(--baseColor-Dark);
@@ -59,7 +85,7 @@ const Section = styled.section`
     text-decoration: none;
     color: var(--baseColor-Light-2);
   }
-  img {
+  .product-image {
     display: block;
     padding: 2rem;
     width: auto;
@@ -98,7 +124,7 @@ const Section = styled.section`
     }
   }
   @media screen and (max-width: 25em) {
-    img {
+    .product-image {
       width: 100%;
       padding: 0.5rem;
     }
