@@ -13,6 +13,7 @@ import HelloFromUser from './components/HelloFromUser';
 import Alert from './components/Alert';
 import PrivateRoute from './components/PrivateRoute';
 import StripeCard from './components/cart/StripeCard';
+import ScrollButton from './components/ScrollButton';
 function App() {
   return (
     <div>
@@ -20,6 +21,7 @@ function App() {
         <Alert />
         <HelloFromUser />
         <NavigationBarTop />
+        <ScrollButton />
         <Switch>
           <Route exact path='/'>
             <Home />
