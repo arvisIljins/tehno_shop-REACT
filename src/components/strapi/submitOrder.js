@@ -28,7 +28,6 @@ async function submitOrder({
         total,
         items,
         stripeTokenId,
-        userToken,
         info,
       },
       {
@@ -38,6 +37,7 @@ async function submitOrder({
       }
     )
     .catch((error) => console.log(error));
+
   return response;
 }
 
