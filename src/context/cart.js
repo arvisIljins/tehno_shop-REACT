@@ -1,5 +1,5 @@
 import React, { createContext, useEffect } from 'react';
-
+import NoImage from '../images/NoImageAvailable.png';
 const getCartFromLocalStorage = () => {
   return localStorage.getItem('cart')
     ? JSON.parse(localStorage.getItem('cart'))
@@ -81,15 +81,9 @@ const CartProvider = ({ children }) => {
 
   //Add to cart
   const addToCart = (product) => {
-    const {
-      id,
-      title,
-      price,
-      Shipping,
-      image: { url },
-    } = product;
+    const { id, title, price, Shipping, image } = product;
     const item = [...cart].find((item) => item.id === id);
-
+    const url = image === null ? NoImage : image.url;
     if (item) {
       increaseAmount(id);
     } else {

@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import freeShippingImg from '../../images/freeShipping.png';
-
+import NoImage from '../../images/NoImageAvailable.png';
 const Product = ({ id, title, image, price, Shipping }) => {
-  const url = image.url;
+  const url = image === null ? NoImage : image.url;
   return (
     <Section>
       {Shipping === null && (

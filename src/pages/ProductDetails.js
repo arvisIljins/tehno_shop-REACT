@@ -6,7 +6,7 @@ import Loading from '../components/Loading';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import { CartContext } from '../context/cart';
-
+import NoImage from '../images/NoImageAvailable.png';
 const SingleProduct = () => {
   const history = useHistory();
   const { addToCart } = useContext(CartContext);
@@ -22,7 +22,7 @@ const SingleProduct = () => {
     return <Loading />;
   } else {
     const {
-      image: { url },
+      image,
       title,
       description,
       price,
@@ -30,7 +30,7 @@ const SingleProduct = () => {
       specification,
       Shipping,
     } = product;
-
+    const url = image === null ? NoImage : image.url;
     return (
       <Section>
         <div className='go_back_section'>
