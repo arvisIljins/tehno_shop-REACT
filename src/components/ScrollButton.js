@@ -13,8 +13,12 @@ const ScrollButton = () => {
 export default ScrollButton;
 
 const Button = styled.button`
+  z-index: 9999;
+  display: block;
+  position: fixed;
+  right: 3rem;
+  bottom: 3rem;
   padding: 0.5rem 1rem;
-  margin: 2rem;
   border-radius: 70%;
   border: none;
   font-size: 4rem;
