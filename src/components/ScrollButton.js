@@ -2,9 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { VscFoldUp } from 'react-icons/vsc';
 
+const BackToTop = () => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  });
+};
+
 const ScrollButton = () => {
   return (
-    <Button>
+    <Button onClick={BackToTop}>
       <VscFoldUp />
     </Button>
   );
@@ -33,7 +41,5 @@ const Button = styled.button`
 
   :focus {
     outline: none;
-    box-shadow: 1rem 1rem 1rem var(--baseColor-Dark);
-    transform: translateY(0);
   }
 `;
