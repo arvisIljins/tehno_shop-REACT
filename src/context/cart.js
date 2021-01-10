@@ -1,5 +1,7 @@
 import React, { createContext, useEffect } from 'react';
-import NoImage from '../images/NoImageAvailable.png';
+
+import reducer from './reducer';
+
 const getCartFromLocalStorage = () => {
   return localStorage.getItem('cart')
     ? JSON.parse(localStorage.getItem('cart'))
@@ -9,7 +11,7 @@ const getCartFromLocalStorage = () => {
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = React.useState(getCartFromLocalStorage());
+  const [cart, dispatch] = React.useReducer(reducer, getCartFromLocalStorage());
   const [subTotal, setSubTotal] = React.useState(0);
   const [cartItem, setCartItem] = React.useState(0);
   const [totalShipping, setShipping] = React.useState(0);
@@ -40,71 +42,44 @@ const CartProvider = ({ children }) => {
     setShipping(newTotalShipping);
   }, [cart]);
 
-  //Delete Item
-  const deleteItem = (id) => {
-    setCart([...cart].filter((item) => item.id !== id));
-  };
-  // Increase amount
-  const increaseAmount = (id) => {
-    setCart(
-      [...cart].map((item) => {
-        return item.id === id
-          ? {
-              ...item,
-              amount: item.amount + 1,
-            }
-          : { ...item };
-      })
-    );
-  };
-
-  //Decrease amount
-  const decreaseAmount = (id, amount) => {
-    return amount === 1
-      ? deleteItem(id)
-      : setCart(
-          [...cart].map((item) => {
-            return item.id === id
-              ? {
-                  ...item,
-                  amount: item.amount - 1,
-                }
-              : { ...item };
-          })
-        );
-  };
-
-  //Remove all items from cart
-  const removeAllItems = () => {
-    setCart([]);
-  };
-
-  //Add to cart
-  const addToCart = (product) => {
-    const { id, title, price, Shipping, image } = product;
-    const item = [...cart].find((item) => item.id === id);
-    const url = image === null ? NoImage : image.url;
-    if (item) {
-      increaseAmount(id);
-    } else {
-      const newItem = {
-        id,
-        title,
-        price,
-        Shipping,
-        image: url,
-        amount: 1,
-      };
-      const newCart = [...cart, newItem];
-      setCart(newCart);
-    }
-  };
   // Total price
   let total = subTotal + totalShipping;
   total = parseFloat(total.toFixed(2));
   //Taxis
   let taxis = (subTotal + totalShipping) * 0.21;
   taxis = parseFloat(taxis.toFixed(2));
+
+  ////////////////////////////////
+  //Delete Item
+  const deleteItem = (id) => {
+    dispatch({ type: 'DELETE', id: id });
+  };
+  // Increase amount
+  const increaseAmount = (id) => {
+    dispatch({ type: 'INCREASE', id: id });
+  };
+
+  //Decrease amount
+  const decreaseAmount = (id, amount) => {
+    return amount === 1
+      ? dispatch({ type: 'DELETE', id: id })
+      : dispatch({ type: 'DECREASE', id: id });
+  };
+
+  //Remove all items from cart
+  const removeAllItems = () => {
+    dispatch({ type: 'CLEARCART' });
+  };
+
+  //Add to cart
+  const addToCart = (product) => {
+    const item = [...cart].find((item) => item.id === product.id);
+    if (item) {
+      dispatch({ type: 'INCREASE', id: product.id });
+    } else {
+      dispatch({ type: 'ADDTOCART', id: product });
+    }
+  };
 
   return (
     <CartContext.Provider
