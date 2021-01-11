@@ -1,6 +1,6 @@
 import NoImage from '../images/NoImageAvailable.png';
 
-export default (state, action) => {
+const Reducer = (state, action) => {
   switch (action.type) {
     case 'DELETE':
       return state.filter((item) => item.id !== action.id);
@@ -35,5 +35,6 @@ export default (state, action) => {
     default:
       return state;
   }
-  return state;
 };
+
+export default Reducer;
