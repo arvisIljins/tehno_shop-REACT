@@ -13,13 +13,12 @@ const featuredProductsPicker = (date) => {
 
 // Paginated products
 const paginate = (products) => {
-  const itemsPerPage = 4;
+  const itemsPerPage = 8;
   const numberOfPages = Math.ceil(products.length / itemsPerPage);
   const newProduct = Array.from({ length: numberOfPages }, (_, index) => {
     const start = index * itemsPerPage;
     return products.slice(start, start + itemsPerPage);
   });
-
   return newProduct;
 };
 
@@ -42,9 +41,22 @@ const ProductProvider = ({ children }) => {
     });
     return () => {};
   }, []);
+
+  //Change page
+  const changePage = (index) => {
+    setPage(index);
+  };
+
   return (
     <ProductContext.Provider
-      value={{ products, loading, featured, sorted, page }}
+      value={{
+        products,
+        loading,
+        featured,
+        sorted,
+        page,
+        changePage,
+      }}
     >
       {children}
     </ProductContext.Provider>
