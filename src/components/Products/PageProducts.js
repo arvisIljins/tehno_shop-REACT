@@ -1,14 +1,18 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ProductContext } from '../../context/products';
+import Loading from '../Loading';
 import ProductList from './ProductList';
 
 const PageProducts = () => {
-  const { sorted, products } = useContext(ProductContext);
-  return (
+  const { sorted, products, page } = useContext(ProductContext);
+  console.log(sorted);
+  return sorted[page] ? (
     <Section>
-      <ProductList products={sorted} />
+      <ProductList products={sorted[page]} />
     </Section>
+  ) : (
+    <Loading />
   );
 };
 
