@@ -90,6 +90,7 @@ const Section = styled.section`
     padding: 0 2rem;
     width: auto;
     max-height: 18rem;
+    object-fit: scale-down;
     margin: 0 auto;
   }
   .title {
