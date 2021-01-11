@@ -87,9 +87,9 @@ const Section = styled.section`
   }
   .product-image {
     display: block;
-    padding: 2rem;
+    padding: 0 2rem;
     width: auto;
-    max-height: 25rem;
+    max-height: 18rem;
     margin: 0 auto;
   }
   .title {
