@@ -4,12 +4,12 @@ import ProductList from '../components/Products/ProductList';
 import { ProductContext } from '../context/products';
 
 const Products = () => {
-  const { loading, products } = useContext(ProductContext);
+  const { loading, sorted } = useContext(ProductContext);
 
   return loading ? (
     <Loading />
   ) : (
-    <ProductList title='Product list' products={products} />
+    <ProductList title='Product list' products={sorted} />
   );
 };
 
