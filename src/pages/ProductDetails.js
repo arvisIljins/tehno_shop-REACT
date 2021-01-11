@@ -29,8 +29,10 @@ const SingleProduct = () => {
       created_at,
       specification,
       Shipping,
+      galery,
     } = product;
     const url = image === null ? NoImage : image.url;
+
     return (
       <Section>
         <div className='go_back_section'>
@@ -59,6 +61,12 @@ const SingleProduct = () => {
             >
               Add to cart
             </Button>
+          </div>
+          <div>
+            {galery &&
+              galery.map((item, index) => {
+                return <img src={item.url} alt={`galery ${index}`}></img>;
+              })}
           </div>
         </div>
         <div className='featured_container'>
