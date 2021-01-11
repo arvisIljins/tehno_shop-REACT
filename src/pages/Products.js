@@ -1,16 +1,39 @@
 import React, { useContext } from 'react';
 import Loading from '../components/Loading';
-import ProductList from '../components/Products/ProductList';
+import PageProducts from '../components/Products/PageProducts';
+import ProductFilter from '../components/Products/ProductFilter';
 import { ProductContext } from '../context/products';
+import styled from 'styled-components';
 
 const Products = () => {
-  const { loading, sorted } = useContext(ProductContext);
-
+  const { loading } = useContext(ProductContext);
   return loading ? (
     <Loading />
   ) : (
-    <ProductList title='Product list' products={sorted} />
+    <React.Fragment>
+      <SectionTile>All Products</SectionTile>
+      <Section>
+        <ProductFilter />
+        <PageProducts />
+      </Section>
+    </React.Fragment>
   );
 };
 
 export default Products;
+
+const Section = styled.section`
+  max-width: 150rem;
+  margin: 0 auto;
+  display: flex;
+
+  @media screen and (max-width: 56.25em) {
+    display: block;
+  }
+`;
+const SectionTile = styled.h1`
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 2rem;
+`;

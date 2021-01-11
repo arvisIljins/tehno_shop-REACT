@@ -21,7 +21,7 @@ const Section = styled.section`
   padding: 2rem;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-gap: 2rem;
 
   @media screen and (max-width: 25em) {

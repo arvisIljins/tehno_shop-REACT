@@ -1,8 +1,8 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import url from '../utils/URL';
 
-export const ProductContext = createContext();
+export const ProductContext = React.createContext();
 
 //Featured products
 const featuredProductsPicker = (date) => {
@@ -12,30 +12,29 @@ const featuredProductsPicker = (date) => {
 };
 
 // Paginated products
-const Paginate = (products) => {
+const paginate = (products) => {
   return products;
 };
 
 const ProductProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [featured, setFeatured] = useState([]);
-  const [page, setPage] = useState([0]);
-  const [filter, setFilter] = useState([]);
-  const [sorted, setSorted] = useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [products, setProducts] = React.useState([]);
+  const [featured, setFeatured] = React.useState([]);
+  const [page, setPage] = React.useState([0]);
+  const [filter, setFilter] = React.useState([]);
+  const [sorted, setSorted] = React.useState([]);
 
   useEffect(() => {
     setLoading(true);
     axios.get(`${url}/products`).then((response) => {
       const featureProducts = featuredProductsPicker(response.data);
-      setSorted(Paginate(products));
       setProducts(response.data);
+      setSorted(paginate(response.data));
       setFeatured(featureProducts);
       setLoading(false);
     });
     return () => {};
   }, []);
-
   return (
     <ProductContext.Provider value={{ products, loading, featured, sorted }}>
       {children}
