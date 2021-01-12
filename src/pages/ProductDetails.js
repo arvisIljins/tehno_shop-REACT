@@ -62,12 +62,18 @@ const SingleProduct = () => {
               Add to cart
             </Button>
           </div>
-          <div>
-            {galery &&
-              galery.map((item, index) => {
-                return <img src={item.url} alt={`galery ${index}`}></img>;
-              })}
-          </div>
+        </div>
+        <div className='gallery_container'>
+          {galery &&
+            galery.map((item, index) => {
+              return (
+                <img
+                  src={item.url}
+                  alt={`gallery ${index}`}
+                  className='gallery_image'
+                ></img>
+              );
+            })}
         </div>
         <div className='featured_container'>
           <h3 className='feature_title'>Main Features：</h3>
@@ -181,7 +187,22 @@ const Section = styled.section`
   }
   .featured_container {
     padding: 1rem;
-    background-color: rgba(5.1, 3.9, 4.7, 0.2);
+    background-color: var(--gallery-color);
+  }
+  .gallery_container {
+    background-color: var(--gallery-color);
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+  }
+  .gallery_image {
+    padding: 1rem;
+    width: 20rem;
+    height: 15rem;
+    object-fit: scale-down;
+    :hover {
+      background-color: var(--baseColor-Light);
+    }
   }
 
   @media screen and (max-width: 43.75em) {
