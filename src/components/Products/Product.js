@@ -18,7 +18,7 @@ const Product = ({ id, title, image, price, Shipping, discountPrice }) => {
       )}
       <img className='product-image' src={url} alt={title} />
       <h1 className='title'>{title}</h1>
-      <div>
+      <div className='price_container'>
         <h4 className={`price ${discountPrice && `price_if_discount`}`}>
           €{price}
         </h4>
@@ -101,15 +101,18 @@ const Section = styled.section`
   .title {
     font-size: 1.5rem;
   }
+  .price_container {
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+  }
   .price {
-    display: inline-block;
     font-size: 2rem;
     overflow: hidden;
     outline: hidden;
   }
   .discount_price {
     padding-left: 1rem;
-    display: inline-block;
     font-size: 2rem;
     overflow: hidden;
     outline: hidden;

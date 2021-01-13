@@ -31,6 +31,7 @@ const SingleProduct = () => {
       specification,
       Shipping,
       galery,
+      discountPrice,
     } = product;
     const url = image === null ? NoImage : image.url;
 
@@ -54,7 +55,18 @@ const SingleProduct = () => {
               }}
             />
             <div className='description_container'>
-              <h2 className='product_price'>€ {price}</h2>
+              <div className='price_container'>
+                <h4
+                  className={`price_price ${
+                    discountPrice && `price_if_discount`
+                  }`}
+                >
+                  €{price}
+                </h4>
+                {discountPrice && (
+                  <h4 className='discount_price'>€{discountPrice}</h4>
+                )}
+              </div>
               <div className='description_container-text'>{description}</div>
 
               <h3 className='shipping_text'>
@@ -179,11 +191,28 @@ const Section = styled.section`
     padding: 1rem 0;
     color: var(--baseColor-Light);
   }
+
+  .price_container {
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+  }
   .product_price {
     font-size: 2rem;
     font-weight: 300;
     letter-spacing: 0.3rem;
     padding: 1rem 0;
+    color: var(--baseColor-Light);
+  }
+  .discount_price {
+    padding-left: 1rem;
+    font-size: 2rem;
+    overflow: hidden;
+    outline: hidden;
+  }
+  .price_if_discount {
+    text-decoration: line-through;
+    font-size: 1.7rem;
     color: var(--baseColor-Light);
   }
   .feature_title {
@@ -222,14 +251,22 @@ const Section = styled.section`
       background-color: var(--baseColor-Light);
     }
   }
+  @media screen and (max-width: 56.25em ) { 
+    .price_container {
+      justify-content: center;
+    }
+  }
+
 
   @media screen and (max-width: 43.75em) {
+    
     .image_row {
       display: block;
-      padding: 1rem;
+      padding: 0.5rem;
+      text-align: center;
     }
     .description_container {
-      padding: 0.5rem;
+      padding: 0;
     }
     .title {
       font-size: 2.5rem;
@@ -242,14 +279,7 @@ const Section = styled.section`
     }
   }
 
-  @media screen and (max-width: 43.75em) {
-    .image_row {
-      display: block;
-      padding: 0.5rem;
-      text-align: center;
-    }
-    .description_container {
-      padding: 0;
-    }
+  
+    
   }
 `;
