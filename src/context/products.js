@@ -29,6 +29,12 @@ const ProductProvider = ({ children }) => {
   const [page, setPage] = React.useState([0]);
   const [filter, setFilter] = React.useState([]);
   const [sorted, setSorted] = React.useState([]);
+  const [popup, setPopup] = React.useState({ show: false, image: [] });
+
+  //Open image popup
+  const TogglePopup = (index) => {
+    setPopup({ show: true, image: index });
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -56,6 +62,8 @@ const ProductProvider = ({ children }) => {
         sorted,
         page,
         changePage,
+        popup,
+        TogglePopup,
       }}
     >
       {children}

@@ -14,10 +14,12 @@ import Alert from './components/Alert';
 import PrivateRoute from './components/PrivateRoute';
 import StripeCard from './components/cart/StripeCard';
 import ScrollButton from './components/ScrollButton';
+import ImagePopUp from './components/ImagePopUp';
 function App() {
   return (
     <div>
       <Router>
+        <ImagePopUp />
         <Alert />
         <HelloFromUser />
         <NavigationBarTop />

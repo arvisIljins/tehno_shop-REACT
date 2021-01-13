@@ -11,10 +11,10 @@ const SingleProduct = () => {
   const history = useHistory();
   const { addToCart } = useContext(CartContext);
   // Id for exact page
-  //console.log(useParams());
+  // console.log(useParams());
   const { id } = useParams();
-  const { products } = useContext(ProductContext);
-  console.log(products);
+  const { products, TogglePopup } = useContext(ProductContext);
+  //console.log(products);
   //check if id mach
   const product = products.find((item) => item.id === parseInt(id));
 
@@ -68,9 +68,13 @@ const SingleProduct = () => {
             galery.map((item, index) => {
               return (
                 <img
+                  key={index}
                   src={item.url}
                   alt={`gallery ${index}`}
                   className='gallery_image'
+                  onClick={() => {
+                    TogglePopup(item.url);
+                  }}
                 ></img>
               );
             })}
