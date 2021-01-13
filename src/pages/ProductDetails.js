@@ -174,8 +174,9 @@ const Section = styled.section`
   }
   .product_image {
     margin: 0 auto;
-    width: auto;
+    width: 100%;
     max-height: 35rem;
+    object-fit: scale-down;
     cursor: zoom-in;
   }
   .description_container {
