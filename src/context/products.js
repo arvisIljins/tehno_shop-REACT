@@ -32,8 +32,11 @@ const ProductProvider = ({ children }) => {
   const [popup, setPopup] = React.useState({ show: false, image: [] });
 
   //Open image popup
-  const TogglePopup = (index) => {
+  const OpenPopup = (index) => {
     setPopup({ show: true, image: index });
+  };
+  const ClosePopup = () => {
+    setPopup({ show: false, image: [] });
   };
 
   useEffect(() => {
@@ -63,7 +66,8 @@ const ProductProvider = ({ children }) => {
         page,
         changePage,
         popup,
-        TogglePopup,
+        OpenPopup,
+        ClosePopup,
       }}
     >
       {children}

@@ -2,16 +2,19 @@ import React, { useContext } from 'react';
 import { ProductContext } from '../context/products';
 import styled from 'styled-components';
 const ImagePopUp = () => {
-  const { popup, TogglePopup } = useContext(ProductContext);
-  console.log(popup.image);
+  const { popup, ClosePopup } = useContext(ProductContext);
   if (popup.show) {
     return (
-      <Popup>
+      <Popup onClick={ClosePopup}>
         <Section>
-          <button className='close_button' onClick={TogglePopup}>
+          <button className='close_button' onClick={ClosePopup}>
             &#10005;
           </button>
-          <img src={popup.image} alt='gallery-image' />
+          <img
+            src={popup.image}
+            alt='gallery-image'
+            className='gallery_image'
+          />
         </Section>
       </Popup>
     );
@@ -48,19 +51,15 @@ const Popup = styled.div`
   }
 `;
 const Section = styled.section`
-  border-radius: 5%;
   text-align: center;
   position: absolute;
-  top: 0;
+  top: -12rem;
   left: 0;
   right: 0;
   margin: calc(50vh - 22rem) auto;
-  max-width: 45rem;
+  max-width: 50%;
   background-color: transparent;
-  padding: 5rem 2rem;
-  overflow: hidden;
   transition: all 0.3s;
-  box-shadow: 0 0 1rem 1px var(--baseColor-Light-2);
   .close_button,
   .close_button:active {
     outline: none;
@@ -78,5 +77,15 @@ const Section = styled.section`
       color: var(--baseColor-Light);
       transform: translateY(-0.3rem);
     }
+  }
+  .gallery_image {
+    width: 100%;
+    max-height: 90vh;
+    object-fit: scale-down;
+    cursor: zoom-out;
+  }
+
+  @media screen and (max-width: 56.25em) {
+    top: 0;
   }
 `;

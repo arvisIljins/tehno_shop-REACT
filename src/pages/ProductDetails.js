@@ -13,7 +13,7 @@ const SingleProduct = () => {
   // Id for exact page
   // console.log(useParams());
   const { id } = useParams();
-  const { products, TogglePopup } = useContext(ProductContext);
+  const { products, OpenPopup } = useContext(ProductContext);
   //console.log(products);
   //check if id mach
   const product = products.find((item) => item.id === parseInt(id));
@@ -43,7 +43,14 @@ const SingleProduct = () => {
         </div>
         <h1 className='title'>{title}</h1>
         <div className='image_row'>
-          <img src={url} alt={title} className='product_image' />
+          <img
+            src={url}
+            alt={title}
+            className='product_image'
+            onClick={() => {
+              OpenPopup(url);
+            }}
+          />
           <div className='description_container'>
             <h2 className='product_price'>€ {price}</h2>
             <div className='description_container-text'>{description}</div>
@@ -73,7 +80,7 @@ const SingleProduct = () => {
                   alt={`gallery ${index}`}
                   className='gallery_image'
                   onClick={() => {
-                    TogglePopup(item.url);
+                    OpenPopup(item.url);
                   }}
                 ></img>
               );
@@ -154,6 +161,7 @@ const Section = styled.section`
     margin: 0 auto;
     width: auto;
     max-height: 35rem;
+    cursor: zoom-in;
   }
   .description_container {
     padding: 2rem;
@@ -204,6 +212,7 @@ const Section = styled.section`
     width: 20rem;
     height: 15rem;
     object-fit: scale-down;
+    cursor: zoom-in;
     :hover {
       background-color: var(--baseColor-Light);
     }
