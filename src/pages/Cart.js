@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import styled from 'styled-components';
 import { UserContext } from '../context/user';
 import { Link } from 'react-router-dom';
+import PageTransition from '../components/PageTransition';
 const Cart = () => {
   const {
     total,
@@ -21,32 +22,36 @@ const Cart = () => {
   return cart <= 0 ? (
     <EmptyCart />
   ) : (
-    <Section>
-      <h1 className='title'>Shopping cart</h1>
-      {cart.map((item) => {
-        return <CartItem key={item.id} {...item} />;
-      })}
-      <h2 className='cart_total cart_total-average'>Subtotal: € {subTotal}</h2>
-      <h2 className='cart_total cart_total-small'>
-        + Shipping: € {totalShipping}
-      </h2>
-      <h2 className='cart_total cart_total-small'>
-        21% tax included: € {taxis}
-      </h2>
-      <h2 className='cart_total cart_total-big'>Total: € {total}</h2>
-      <Link className='button' to={user.token ? '/checkout' : '/login'}>
-        {user.token ? 'Checkout' : 'Login'}
-      </Link>
-      <br />
-      <Button
-        style={{ marginTop: '2rem' }}
-        onClick={() => {
-          removeAllItems();
-        }}
-      >
-        Remove all
-      </Button>
-    </Section>
+    <PageTransition>
+      <Section>
+        <h1 className='title'>Shopping cart</h1>
+        {cart.map((item) => {
+          return <CartItem key={item.id} {...item} />;
+        })}
+        <h2 className='cart_total cart_total-average'>
+          Subtotal: € {subTotal}
+        </h2>
+        <h2 className='cart_total cart_total-small'>
+          + Shipping: € {totalShipping}
+        </h2>
+        <h2 className='cart_total cart_total-small'>
+          21% tax included: € {taxis}
+        </h2>
+        <h2 className='cart_total cart_total-big'>Total: € {total}</h2>
+        <Link className='button' to={user.token ? '/checkout' : '/login'}>
+          {user.token ? 'Checkout' : 'Login'}
+        </Link>
+        <br />
+        <Button
+          style={{ marginTop: '2rem' }}
+          onClick={() => {
+            removeAllItems();
+          }}
+        >
+          Remove all
+        </Button>
+      </Section>
+    </PageTransition>
   );
 };
 

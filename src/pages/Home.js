@@ -5,10 +5,11 @@ import HeroImage from '../images/hero.jpg';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import FeatureProducts from '../components/Products/FeatureProducts';
+import PageTransition from '../components/PageTransition';
 
 const Home = () => {
   return (
-    <React.Fragment>
+    <PageTransition>
       <Hero img={HeroImage}>
         <Banner
           header='Your number one Techno shop in the town'
@@ -20,7 +21,7 @@ const Home = () => {
         </Banner>
       </Hero>
       <FeatureProducts />
-    </React.Fragment>
+    </PageTransition>
   );
 };
 

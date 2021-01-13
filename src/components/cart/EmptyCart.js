@@ -2,16 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Button from '../Button';
+import PageTransition from '../PageTransition';
 const EmptyCart = () => {
   return (
-    <Container>
-      <h1>Your cart currently is empty!</h1>
-      <div className='wrapper'>
-        <Button>
-          <Link to='/products'>Go back to products</Link>
-        </Button>
-      </div>
-    </Container>
+    <PageTransition>
+      <Container>
+        <h1>Your cart currently is empty!</h1>
+        <div className='wrapper'>
+          <Button>
+            <Link to='/products'>Go back to products</Link>
+          </Button>
+        </div>
+      </Container>
+    </PageTransition>
   );
 };
 

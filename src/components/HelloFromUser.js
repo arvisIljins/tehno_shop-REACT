@@ -30,6 +30,8 @@ const HelloFromUser = () => {
 export default HelloFromUser;
 
 const Section = styled.section`
+  position: relative;
+  z-index: 9999;
   background-color: var(--baseColor-Dark-3);
 
   .container {

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import PageTransition from '../components/PageTransition';
 import AboutImage from '../images/aboutimg.jpg';
 
 const About = () => {
   return (
-    <React.Fragment>
+    <PageTransition>
       <Heading className='about__heading'>
         About{' '}
         <span className='about__logo'>
@@ -36,7 +37,7 @@ const About = () => {
           </p>
         </div>
       </Container>
-    </React.Fragment>
+    </PageTransition>
   );
 };
 

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Button from '../components/Button';
 import { CartContext } from '../context/cart';
 import NoImage from '../images/NoImageAvailable.png';
+import PageTransition from '../components/PageTransition';
 const SingleProduct = () => {
   const history = useHistory();
   const { addToCart } = useContext(CartContext);
@@ -34,75 +35,77 @@ const SingleProduct = () => {
     const url = image === null ? NoImage : image.url;
 
     return (
-      <Section>
-        <div className='go_back_section'>
-          <Link to='/products' className='button_back'>
-            &#8678; Back to products
-          </Link>
-          <h3 className='date_text'>Posted: {created_at.slice(0, 10)}</h3>
-        </div>
-        <h1 className='title'>{title}</h1>
-        <div className='image_row'>
-          <img
-            src={url}
-            alt={title}
-            className='product_image'
-            onClick={() => {
-              OpenPopup(url);
-            }}
-          />
-          <div className='description_container'>
-            <h2 className='product_price'>€ {price}</h2>
-            <div className='description_container-text'>{description}</div>
-
-            <h3 className='shipping_text'>
-              {Shipping === null
-                ? 'Free shipping'
-                : `Shipping coust is € ${Shipping}`}
-            </h3>
-            <Button
+      <PageTransition>
+        <Section>
+          <div className='go_back_section'>
+            <Link to='/products' className='button_back'>
+              &#8678; Back to products
+            </Link>
+            <h3 className='date_text'>Posted: {created_at.slice(0, 10)}</h3>
+          </div>
+          <h1 className='title'>{title}</h1>
+          <div className='image_row'>
+            <img
+              src={url}
+              alt={title}
+              className='product_image'
               onClick={() => {
-                addToCart(product);
-                history.push('/cart');
+                OpenPopup(url);
               }}
-            >
-              Add to cart
-            </Button>
+            />
+            <div className='description_container'>
+              <h2 className='product_price'>€ {price}</h2>
+              <div className='description_container-text'>{description}</div>
+
+              <h3 className='shipping_text'>
+                {Shipping === null
+                  ? 'Free shipping'
+                  : `Shipping coust is € ${Shipping}`}
+              </h3>
+              <Button
+                onClick={() => {
+                  addToCart(product);
+                  history.push('/cart');
+                }}
+              >
+                Add to cart
+              </Button>
+            </div>
           </div>
-        </div>
-        <div className='gallery_container'>
-          {galery &&
-            galery.map((item, index) => {
-              return (
-                <img
-                  key={index}
-                  src={item.url}
-                  alt={`gallery ${index}`}
-                  className='gallery_image'
-                  onClick={() => {
-                    OpenPopup(item.url);
-                  }}
-                ></img>
-              );
-            })}
-        </div>
-        <div className='featured_container'>
-          <h3 className='feature_title'>Main Features：</h3>
-          <div>
-            {specification === null ? (
-              <p className='feature_item'>No specification</p>
-            ) : (
-              specification.map((item, index) => {
+          <div className='gallery_container'>
+            {galery &&
+              galery.map((item, index) => {
                 return (
-                  <p className='feature_item' key={index}>
-                    <span>&#10003;</span> {item}
-                  </p>
+                  <img
+                    key={index}
+                    src={item.url}
+                    alt={`gallery ${index}`}
+                    className='gallery_image'
+                    onClick={() => {
+                      OpenPopup(item.url);
+                    }}
+                  ></img>
                 );
-              })
-            )}
+              })}
           </div>
-        </div>
-      </Section>
+          <div className='featured_container'>
+            <h3 className='feature_title'>Main Features：</h3>
+            <div>
+              {specification === null ? (
+                <p className='feature_item'>No specification</p>
+              ) : (
+                specification.map((item, index) => {
+                  return (
+                    <p className='feature_item' key={index}>
+                      <span>&#10003;</span> {item}
+                    </p>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        </Section>
+      </PageTransition>
     );
   }
 };

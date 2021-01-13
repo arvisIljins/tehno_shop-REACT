@@ -78,6 +78,9 @@ export default class NavigationBarTop extends Component {
 
 const Header = styled.header`
   background-color: var(--baseColor-Dark);
+  position: relative;
+  z-index: 9999;
+  box-shadow: 0 1.5rem 1rem -1rem var(--baseColor-Dark-2);
 
   .header__list-show {
     height: 35rem;

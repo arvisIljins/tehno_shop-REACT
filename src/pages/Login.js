@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import PageTransition from '../components/PageTransition';
 import loginUser from '../components/strapi/loginUser';
 import userRegister from '../components/strapi/userRegister';
 import { UserContext } from '../context/user';
@@ -53,79 +54,81 @@ const Login = () => {
   };
 
   return (
-    <Section>
-      <h2 className='section_title'>{isMember ? 'sign in' : 'register'}</h2>
+    <PageTransition>
+      <Section>
+        <h2 className='section_title'>{isMember ? 'sign in' : 'register'}</h2>
 
-      <form className='login_form'>
-        {/* Email */}
-        <div className='form_group'>
-          <input
-            className='form_input'
-            placeholder='Email address'
-            type='email'
-            required
-            id='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label className='form_label' htmlFor='email'>
-            Email
-          </label>
-        </div>
-        {/* Password*/}
-        <div className='form_group'>
-          <input
-            className='form_input'
-            placeholder='Password'
-            required
-            type='password'
-            id='password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label className='form_label' htmlFor='password'>
-            Password
-          </label>
-        </div>
-        {/* User */}
-        {!isMember && (
+        <form className='login_form'>
+          {/* Email */}
           <div className='form_group'>
             <input
               className='form_input'
-              placeholder='Your username'
+              placeholder='Email address'
+              type='email'
               required
-              type='text'
-              id='username'
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              id='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <label className='form_label' htmlFor='username'>
-              Username
+            <label className='form_label' htmlFor='email'>
+              Email
             </label>
           </div>
-        )}
-        {/* Description text */}
-        {isEmpty && (
-          <p className='form_description'>
-            {isMember
-              ? 'Please enter your username and password to login or '
-              : 'Please enter your email, password and username to register or '}
-
-            <span className='register_button' onClick={() => toggleMember()}>
-              {isMember ? 'go to register!' : 'go to login'}
-            </span>
-          </p>
-        )}
-        {/* Submit button */}
-        <div className='button_container'>
-          {!isEmpty && (
-            <Button type='submit' onClick={handleSubmit}>
-              {isMember ? 'Login' : 'Register'}
-            </Button>
+          {/* Password*/}
+          <div className='form_group'>
+            <input
+              className='form_input'
+              placeholder='Password'
+              required
+              type='password'
+              id='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label className='form_label' htmlFor='password'>
+              Password
+            </label>
+          </div>
+          {/* User */}
+          {!isMember && (
+            <div className='form_group'>
+              <input
+                className='form_input'
+                placeholder='Your username'
+                required
+                type='text'
+                id='username'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label className='form_label' htmlFor='username'>
+                Username
+              </label>
+            </div>
           )}
-        </div>
-      </form>
-    </Section>
+          {/* Description text */}
+          {isEmpty && (
+            <p className='form_description'>
+              {isMember
+                ? 'Please enter your username and password to login or '
+                : 'Please enter your email, password and username to register or '}
+
+              <span className='register_button' onClick={() => toggleMember()}>
+                {isMember ? 'go to register!' : 'go to login'}
+              </span>
+            </p>
+          )}
+          {/* Submit button */}
+          <div className='button_container'>
+            {!isEmpty && (
+              <Button type='submit' onClick={handleSubmit}>
+                {isMember ? 'Login' : 'Register'}
+              </Button>
+            )}
+          </div>
+        </form>
+      </Section>
+    </PageTransition>
   );
 };
 

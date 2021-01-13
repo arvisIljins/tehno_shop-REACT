@@ -8,6 +8,7 @@ import CheckOutItem from '../components/cart/CheckOutItem';
 import Button from '../components/Button';
 import { CardElement } from 'react-stripe-elements';
 import submitOrder from '../components/strapi/submitOrder';
+import PageTransition from '../components/PageTransition';
 
 const Checkout = (props) => {
   const { cart, total, taxis, removeAllItems } = useContext(CartContext);
@@ -80,174 +81,176 @@ const Checkout = (props) => {
   return cart.length < 1 ? (
     <EmptyCart />
   ) : (
-    <Section>
-      <h1 className='title'>Checkout</h1>
-      <h2 className='cart_total'>Order Total: € {total}</h2>
-      <h2 className='cart_total cart_total-small'>
-        21% tax included: € {taxis}
-      </h2>
-      <div className='line' />
-      {/* Inputs*/}
+    <PageTransition>
+      <Section>
+        <h1 className='title'>Checkout</h1>
+        <h2 className='cart_total'>Order Total: € {total}</h2>
+        <h2 className='cart_total cart_total-small'>
+          21% tax included: € {taxis}
+        </h2>
+        <div className='line' />
+        {/* Inputs*/}
 
-      <div className='grid_container'>
-        <form className='form'>
-          <h4 className='sub-title'>Shipping Details:</h4>
-          {/* Name */}
-          <div className='form_group'>
-            <input
-              className='form_input'
-              placeholder='Full Name'
-              required
-              type='text'
-              id='name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <label className='form_label' htmlFor='name'>
-              Full Name
-            </label>
-          </div>
-
-          {/* Phone */}
-          <div className='form_group'>
-            <input
-              className='form_input'
-              placeholder='Phone number'
-              required
-              type='text'
-              id='phone'
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-            <label className='form_label' htmlFor='phone'>
-              Phone number
-            </label>
-          </div>
-
-          {/* Country */}
-          <div className='form_group'>
-            <input
-              className='form_input'
-              placeholder='Country'
-              required
-              type='text'
-              id='country'
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-            />
-            <label className='form_label' htmlFor='country'>
-              Country
-            </label>
-          </div>
-
-          {/* City */}
-          <div className='form_group'>
-            <input
-              className='form_input'
-              placeholder='City'
-              required
-              type='text'
-              id='city'
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-            <label className='form_label' htmlFor='city'>
-              City
-            </label>
-          </div>
-
-          {/* Address */}
-          <div className='form_group'>
-            <input
-              className='form_input'
-              placeholder='Address'
-              required
-              type='text'
-              id='address'
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-            <label className='form_label' htmlFor='address'>
-              Address
-            </label>
-          </div>
-
-          {/* Postcode */}
-          <div className='form_group'>
-            <input
-              className='form_input'
-              placeholder='Postcode'
-              required
-              type='text'
-              id='postcode'
-              value={postcode}
-              onChange={(e) => setPostcode(e.target.value)}
-            />
-            <label className='form_label' htmlFor='postcode'>
-              Postcode
-            </label>
-          </div>
-
-          {/* Postcode */}
-          <div className='form_group'>
-            <textarea
-              className='form_input'
-              placeholder='Extra information about the order'
-              required
-              type='text'
-              id='info'
-              value={info}
-              onChange={(e) => setInfo(e.target.value)}
-            />
-            <label className='form_label' htmlFor='info'>
-              Extra information about the order
-            </label>
-          </div>
-        </form>
-        <div>
-          <div className='credit-cart_input'>
-            <h4 className='sub-title'>Products:</h4>
-            {cart.map((item) => {
-              return <CheckOutItem key={item.id} {...item} />;
-            })}
-          </div>
-          <div className='credit-cart_input'>
-            <h4 className='sub-title'>Payment Details:</h4>
-
-            {/* Stripe Elements */}
-            <CardElement></CardElement>
-            {/* Card holder name */}
+        <div className='grid_container'>
+          <form className='form'>
+            <h4 className='sub-title'>Shipping Details:</h4>
+            {/* Name */}
             <div className='form_group'>
               <input
                 className='form_input'
-                placeholder='Card holder full name'
+                placeholder='Full Name'
                 required
                 type='text'
-                id='cartName'
-                value={cartName}
-                onChange={(e) => setCartName(e.target.value)}
+                id='name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
-              <label className='form_label' htmlFor='cartName'>
-                Card holder full name
+              <label className='form_label' htmlFor='name'>
+                Full Name
               </label>
             </div>
-            {/* Strip Error */}
-            {error && <p className='error_description'>{error}</p>}
-            {/* Submit */}
-            {isEmpty ? (
-              <p className='error_description'>
-                Please fill out Shipping information section and card holed
-                name..
-              </p>
-            ) : (
-              <div className='pay_now_btn_container'>
-                <Button onClick={handleSubmit}>Pay now</Button>
+
+            {/* Phone */}
+            <div className='form_group'>
+              <input
+                className='form_input'
+                placeholder='Phone number'
+                required
+                type='text'
+                id='phone'
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+              <label className='form_label' htmlFor='phone'>
+                Phone number
+              </label>
+            </div>
+
+            {/* Country */}
+            <div className='form_group'>
+              <input
+                className='form_input'
+                placeholder='Country'
+                required
+                type='text'
+                id='country'
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              />
+              <label className='form_label' htmlFor='country'>
+                Country
+              </label>
+            </div>
+
+            {/* City */}
+            <div className='form_group'>
+              <input
+                className='form_input'
+                placeholder='City'
+                required
+                type='text'
+                id='city'
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+              <label className='form_label' htmlFor='city'>
+                City
+              </label>
+            </div>
+
+            {/* Address */}
+            <div className='form_group'>
+              <input
+                className='form_input'
+                placeholder='Address'
+                required
+                type='text'
+                id='address'
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              <label className='form_label' htmlFor='address'>
+                Address
+              </label>
+            </div>
+
+            {/* Postcode */}
+            <div className='form_group'>
+              <input
+                className='form_input'
+                placeholder='Postcode'
+                required
+                type='text'
+                id='postcode'
+                value={postcode}
+                onChange={(e) => setPostcode(e.target.value)}
+              />
+              <label className='form_label' htmlFor='postcode'>
+                Postcode
+              </label>
+            </div>
+
+            {/* Postcode */}
+            <div className='form_group'>
+              <textarea
+                className='form_input'
+                placeholder='Extra information about the order'
+                required
+                type='text'
+                id='info'
+                value={info}
+                onChange={(e) => setInfo(e.target.value)}
+              />
+              <label className='form_label' htmlFor='info'>
+                Extra information about the order
+              </label>
+            </div>
+          </form>
+          <div>
+            <div className='credit-cart_input'>
+              <h4 className='sub-title'>Products:</h4>
+              {cart.map((item) => {
+                return <CheckOutItem key={item.id} {...item} />;
+              })}
+            </div>
+            <div className='credit-cart_input'>
+              <h4 className='sub-title'>Payment Details:</h4>
+
+              {/* Stripe Elements */}
+              <CardElement></CardElement>
+              {/* Card holder name */}
+              <div className='form_group'>
+                <input
+                  className='form_input'
+                  placeholder='Card holder full name'
+                  required
+                  type='text'
+                  id='cartName'
+                  value={cartName}
+                  onChange={(e) => setCartName(e.target.value)}
+                />
+                <label className='form_label' htmlFor='cartName'>
+                  Card holder full name
+                </label>
               </div>
-            )}
+              {/* Strip Error */}
+              {error && <p className='error_description'>{error}</p>}
+              {/* Submit */}
+              {isEmpty ? (
+                <p className='error_description'>
+                  Please fill out Shipping information section and card holed
+                  name..
+                </p>
+              ) : (
+                <div className='pay_now_btn_container'>
+                  <Button onClick={handleSubmit}>Pay now</Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </Section>
+      </Section>
+    </PageTransition>
   );
 };
 

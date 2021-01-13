@@ -4,19 +4,20 @@ import PageProducts from '../components/Products/PageProducts';
 import ProductFilter from '../components/Products/ProductFilter';
 import { ProductContext } from '../context/products';
 import styled from 'styled-components';
+import PageTransition from '../components/PageTransition';
 
 const Products = () => {
   const { loading } = useContext(ProductContext);
   return loading ? (
     <Loading />
   ) : (
-    <React.Fragment>
+    <PageTransition>
       <SectionTile>All Products</SectionTile>
       <Section>
         <ProductFilter />
         <PageProducts />
       </Section>
-    </React.Fragment>
+    </PageTransition>
   );
 };
 
