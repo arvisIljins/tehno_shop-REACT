@@ -53,10 +53,10 @@ const Popup = styled.div`
 const Section = styled.section`
   text-align: center;
   position: absolute;
-  top: -12rem;
+  top: 0;
   left: 0;
   right: 0;
-  margin: calc(50vh - 22rem) auto;
+  margin: calc(50vh - 30rem) auto;
   max-width: 50%;
   background-color: transparent;
   transition: all 0.3s;
@@ -85,7 +85,8 @@ const Section = styled.section`
     cursor: zoom-out;
   }
 
-  @media screen and (max-width: 56.25em) {
-    top: 0;
+  @media screen and (max-width: 43.75em) {
+    max-width: 100%;
+    padding: 1rem;
   }
 `;

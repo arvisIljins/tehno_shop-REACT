@@ -204,14 +204,16 @@ const Section = styled.section`
   .gallery_container {
     background-color: var(--gallery-color);
     margin: 1rem 0;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    justify-items: center;
   }
   .gallery_image {
     padding: 1rem;
     width: 20rem;
     height: 15rem;
     object-fit: scale-down;
+
     cursor: zoom-in;
     :hover {
       background-color: var(--baseColor-Light);
@@ -241,6 +243,7 @@ const Section = styled.section`
     .image_row {
       display: block;
       padding: 0.5rem;
+      text-align: center;
     }
     .description_container {
       padding: 0;
