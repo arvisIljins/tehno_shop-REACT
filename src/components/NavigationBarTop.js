@@ -14,9 +14,11 @@ export default class NavigationBarTop extends Component {
   render() {
     return (
       <Header>
-        <h3 className='header__logo'>
-          TechnoShops<span>.com</span>
-        </h3>
+        <Link to='/'>
+          <h3 className='header__logo'>
+            TechnoShops<span>.com</span>
+          </h3>
+        </Link>
         <button
           type='button'
           className='navigation__btn'
@@ -100,6 +102,10 @@ const Header = styled.header`
     span {
       color: var(--baseColor-Light);
     }
+  }
+  a {
+    color: var(--baseColor-Light-2);
+    text-decoration: none;
   }
   .header__list {
     margin: 0 auto;
