@@ -251,15 +251,13 @@ const Section = styled.section`
       background-color: var(--baseColor-Light);
     }
   }
-  @media screen and (max-width: 56.25em ) { 
+  @media screen and (max-width: 56.25em) {
     .price_container {
       justify-content: center;
     }
   }
 
-
   @media screen and (max-width: 43.75em) {
-    
     .image_row {
       display: block;
       padding: 0.5rem;
@@ -277,9 +275,5 @@ const Section = styled.section`
     .button_back {
       letter-spacing: 0.1rem;
     }
-  }
-
-  
-    
   }
 `;
