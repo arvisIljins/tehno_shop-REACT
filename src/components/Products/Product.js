@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import freeShippingImg from '../../images/freeShipping.png';
 import NoImage from '../../images/NoImageAvailable.png';
-const Product = ({ id, title, image, price, Shipping }) => {
+const Product = ({ id, title, image, price, Shipping, discountPrice }) => {
   const url = image === null ? NoImage : image.url;
   return (
     <Section>
@@ -18,7 +18,12 @@ const Product = ({ id, title, image, price, Shipping }) => {
       )}
       <img className='product-image' src={url} alt={title} />
       <h1 className='title'>{title}</h1>
-      <h4 className='price'>€{price}</h4>
+      <div>
+        <h4 className={`price ${discountPrice && `price_if_discount`}`}>
+          €{price}
+        </h4>
+        {discountPrice && <h4 className='discount_price'>€{discountPrice}</h4>}
+      </div>
       <Link to={`products/${id}`} className='button'>
         Details
       </Link>
@@ -63,7 +68,7 @@ const Section = styled.section`
   :hover img {
     opacity: 0.3;
   }
-  :hover .price {
+  :hover .discount_price {
     transform: scale(1);
     animation: pulse 0.7s infinite;
   }
@@ -97,9 +102,22 @@ const Section = styled.section`
     font-size: 1.5rem;
   }
   .price {
+    display: inline-block;
     font-size: 2rem;
     overflow: hidden;
     outline: hidden;
+  }
+  .discount_price {
+    padding-left: 1rem;
+    display: inline-block;
+    font-size: 2rem;
+    overflow: hidden;
+    outline: hidden;
+  }
+  .price_if_discount {
+    text-decoration: line-through;
+    font-size: 1.7rem;
+    color: var(--baseColor-Light);
   }
   //Animation
   @keyframes pulse {
