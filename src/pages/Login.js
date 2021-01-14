@@ -4,7 +4,6 @@ import PageTransition from '../components/PageTransition';
 import loginUser from '../components/strapi/loginUser';
 import userRegister from '../components/strapi/userRegister';
 import { UserContext } from '../context/user';
-import { CSSTransitionGroup } from 'react-transition-group';
 
 const Login = () => {
   const { userLogin, showAlert } = useContext(UserContext);
