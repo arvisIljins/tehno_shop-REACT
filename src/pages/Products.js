@@ -28,7 +28,7 @@ const Section = styled.section`
   margin: 0 auto;
   display: flex;
 
-  @media screen and (max-width: 56.25em) {
+  @media screen and (max-width: 68.75em) {
     display: block;
   }
 `;

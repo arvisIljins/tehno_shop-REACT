@@ -17,13 +17,13 @@ const ProductList = ({ title, products }) => {
 export default ProductList;
 
 const Section = styled.section`
-  max-width: 140rem;
+  width: 100%;
   padding: 2rem;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   grid-gap: 2rem;
-
+  justify-content: space-evenly;
   @media screen and (max-width: 25em) {
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   }

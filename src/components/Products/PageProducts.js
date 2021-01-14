@@ -52,7 +52,7 @@ const PageProducts = () => {
 export default PageProducts;
 
 const PageContainer = styled.div`
-  text-align: center;
+  width: 100%;
 
   .under_line {
     width: 15rem;
@@ -90,7 +90,7 @@ const NoItemsTitle = styled.h1`
 const Section = styled.section`
   width: 80%;
 
-  @media screen and (max-width: 56.25em) {
+  @media screen and (max-width: 68.75em) {
     width: 100%;
   }
 `;

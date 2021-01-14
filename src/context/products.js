@@ -27,7 +27,14 @@ const ProductProvider = ({ children }) => {
   const [products, setProducts] = React.useState([]);
   const [featured, setFeatured] = React.useState([]);
   const [page, setPage] = React.useState([0]);
-  const [filter, setFilter] = React.useState([]);
+  const [filter, setFilter] = React.useState({
+    search: '',
+    section: 'all',
+    shipping: true,
+    price: 200,
+    discounted: false,
+    featured: false,
+  });
   const [sorted, setSorted] = React.useState([]);
   const [popup, setPopup] = React.useState({ show: false, image: [] });
 
@@ -37,6 +44,11 @@ const ProductProvider = ({ children }) => {
   };
   const ClosePopup = () => {
     setPopup({ show: false, image: [] });
+  };
+
+  //Update filters
+  const updateFilter = (e) => {
+    console.log(e);
   };
 
   useEffect(() => {
@@ -68,6 +80,8 @@ const ProductProvider = ({ children }) => {
         popup,
         OpenPopup,
         ClosePopup,
+        filter,
+        updateFilter,
       }}
     >
       {children}
