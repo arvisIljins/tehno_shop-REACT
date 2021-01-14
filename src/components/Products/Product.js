@@ -108,14 +108,10 @@ const Section = styled.section`
   }
   .price {
     font-size: 2rem;
-    overflow: hidden;
-    outline: hidden;
   }
   .discount_price {
     padding-left: 1rem;
     font-size: 2rem;
-    overflow: hidden;
-    outline: hidden;
   }
   .price_if_discount {
     text-decoration: line-through;

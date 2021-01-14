@@ -57,7 +57,7 @@ const SingleProduct = () => {
             <div className='description_container'>
               <div className='price_container'>
                 <h4
-                  className={`price_price ${
+                  className={`product_price ${
                     discountPrice && `price_if_discount`
                   }`}
                 >
@@ -157,12 +157,14 @@ const Section = styled.section`
       transform: scale(1) translateY(0);
     }
   }
+  .go_back_section {
+    display: flex;
+    justify-content: space-between;
+  }
   .date_text {
     text-transform: uppercase;
-    float: right;
     font-weight: 300;
     letter-spacing: 0.2rem;
-    display: inline-block;
   }
   .image_row {
     padding: 3rem;
@@ -200,14 +202,11 @@ const Section = styled.section`
     font-size: 2rem;
     font-weight: 300;
     letter-spacing: 0.3rem;
-    padding: 1rem 0;
     color: var(--baseColor-Light);
   }
   .discount_price {
     padding-left: 1rem;
     font-size: 2rem;
-    overflow: hidden;
-    outline: hidden;
   }
   .price_if_discount {
     text-decoration: line-through;
