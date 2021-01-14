@@ -61,11 +61,9 @@ const SingleProduct = () => {
                     discountPrice && `price_if_discount`
                   }`}
                 >
-                  €{price}
+                  €{discountPrice ? discountPrice : price}
                 </h4>
-                {discountPrice && (
-                  <h4 className='discount_price'>€{discountPrice}</h4>
-                )}
+                {discountPrice && <h4 className='discount_price'>€{price}</h4>}
               </div>
               <div className='description_container-text'>{description}</div>
 

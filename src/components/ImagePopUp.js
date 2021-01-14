@@ -10,11 +10,7 @@ const ImagePopUp = () => {
           <button className='close_button' onClick={ClosePopup}>
             &#10005;
           </button>
-          <img
-            src={popup.image}
-            alt='gallery-image'
-            className='gallery_image'
-          />
+          <img src={popup.image} alt='gallery' className='gallery_image' />
         </Section>
       </Popup>
     );

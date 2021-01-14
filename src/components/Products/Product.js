@@ -20,9 +20,9 @@ const Product = ({ id, title, image, price, Shipping, discountPrice }) => {
       <h1 className='title'>{title}</h1>
       <div className='price_container'>
         <h4 className={`price ${discountPrice && `price_if_discount`}`}>
-          €{price}
+          €{discountPrice ? discountPrice : price}
         </h4>
-        {discountPrice && <h4 className='discount_price'>€{discountPrice}</h4>}
+        {discountPrice && <h4 className='discount_price'>€{price}</h4>}
       </div>
       <Link to={`products/${id}`} className='button'>
         Details
