@@ -3,22 +3,27 @@ import styled from 'styled-components';
 
 const Loading = () => {
   return (
-    <Spinner>
-      <div className='lds-spinner'>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </Spinner>
+    <React.Fragment>
+      <Spinner>
+        <div className='lds-spinner'>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </Spinner>
+      <LoadingSubtitle className='loading_subtitle'>
+        It's can take a moment..
+      </LoadingSubtitle>
+    </React.Fragment>
   );
 };
 
@@ -106,4 +111,13 @@ const Spinner = styled.div`
       opacity: 0;
     }
   }
+`;
+
+const LoadingSubtitle = styled.h3`
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.3rem;
+  padding: 1rem 0;
+  color: var(--baseColor-Light);
 `;
