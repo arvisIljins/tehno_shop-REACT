@@ -4,6 +4,7 @@ import PageTransition from '../components/PageTransition';
 import loginUser from '../components/strapi/loginUser';
 import userRegister from '../components/strapi/userRegister';
 import { UserContext } from '../context/user';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 const Login = () => {
   const { userLogin, showAlert } = useContext(UserContext);
@@ -106,6 +107,7 @@ const Login = () => {
               </label>
             </div>
           )}
+
           {/* Description text */}
           {isEmpty && (
             <p className='form_description'>
@@ -119,13 +121,23 @@ const Login = () => {
             </p>
           )}
           {/* Submit button */}
-          <div className='button_container'>
-            {!isEmpty && (
+          {!isEmpty && (
+            <div className='button_container'>
+              <p className='form_description'>
+                {isMember ? 'If you want a login ' : 'If you want a register '}
+
+                <span
+                  className='register_button'
+                  onClick={() => toggleMember()}
+                >
+                  {isMember ? 'go to register!' : 'go to login!'}
+                </span>
+              </p>
               <Button type='submit' onClick={handleSubmit}>
                 {isMember ? 'Login' : 'Register'}
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </form>
       </Section>
     </PageTransition>
@@ -197,7 +209,7 @@ const Section = styled.section`
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 0.2rem;
-    padding: 2rem 2rem;
+    padding: 0 2rem;
     font-size: 1rem;
   }
   .register_button {
@@ -209,13 +221,12 @@ const Section = styled.section`
     }
   }
   .button_container {
-    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
   }
 `;
 const Button = styled.button`
-  margin-top: 1rem;
-  display: inline-block;
-  float: right;
   padding: 1rem 2rem;
   font-size: 3rem;
   border: solid 0.1rem var(--baseColor-Light-2);
