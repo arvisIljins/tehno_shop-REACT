@@ -6,6 +6,7 @@ What is Strapi? - Strapi is a flexible, open-source Headless CMS that gives deve
 Who use Stripe? -  Millions of businesses of all sizes—from startups to large enterprises—use Stripe’s software and APIs to accept payments, send payouts, and manage their businesses online.  
 Used advanced CSS styles to make pages maximal representative and dynamic using CSS and JavaScript. All effects and pop ups are made with JavaScript and CSS and styled-components. Web pages are hosted using Netiflay for frontend and Heroku for backend. Also used the Git source control that allows you to record changes to files over time and allows you to view changes and specific versions of those files later on. All web page is made using the latest CSS technologies like Grid system. With a grid system, this webpage is maximum responsive for different mobile devices with a minimum media query.</p>
 <h5>Check demo: <span> <a href="https://tehno-shop-react.netlify.app/" target="_blank">Demo</a> </span> </h5>
+<p>P.S. Backend at start can be very slow. Thats because I use free plan of hosting with Heroku. After first time backend loaded it works perfect.</p>
 <br/>
 <img src="GitImages/picture1.PNG" width="1080">
 <img src="GitImages/picture2.PNG" width="1080">
