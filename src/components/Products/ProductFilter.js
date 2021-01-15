@@ -8,11 +8,10 @@ const ProductFilter = () => {
     return [...new Set(items.map((item) => item[value]))];
   };
   const {
-    filter: { search, section, shipping, price, discounted, featured },
+    filter: { priceFilter },
     updateFilter,
     sorted,
     products,
-    products: { category },
   } = useContext(ProductContext);
 
   // get unique category
@@ -50,73 +49,69 @@ const ProductFilter = () => {
             <label htmlFor='search'> Search product:</label>
             <input
               type='text'
-              value={search}
               className='slider'
               name='search'
+              // value={search}
               onChange={updateFilter}
             />
           </div>
           {/* Category */}
           <div className='categoryContainer'>
-            <label htmlFor='search'>Category:</label>
+            <label htmlFor='section'>Category:</label>
             <select
               name='section'
               className='slider'
-              value={section}
+              //  value={section}
               onChange={updateFilter}
             >
               {categorys}
             </select>
           </div>
-          {/* Price */}
+          {/* Price from to */}
           <div className='slidecontainer'>
-            <label htmlFor='search'>Price: 0 - {price}</label>
+            <label>Price: 0 - {priceFilter}</label>
             <input
               type='range'
               min='1'
               max='5000'
-              value={price}
+              value={priceFilter}
+              id='priceFilter'
               className='slider'
-              name='range'
+              name='priceFilter'
               onChange={updateFilter}
             />
           </div>
-
-          {/* Shipping */}
-
+          {/* Shipping*/}
           <label className='container'>
             <h1 className='check_label'>Free shipping: </h1>
             <input
               type='checkbox'
-              checked={shipping}
               className='check'
               name='shipping'
               onChange={updateFilter}
             />
             <span className='checkmark'></span>
           </label>
-          {/* Featured*/}
-
+          {/* Featured */}
           <label className='container'>
             <h1 className='check_label'>We suggest: </h1>
             <input
               type='checkbox'
-              checked={featured}
               className='check'
-              name='featured'
+              name='featuredFilter'
+              id='featuredFilter'
               onChange={updateFilter}
             />
             <span className='checkmark'></span>
           </label>
           {/* Discounted */}
-
           <label className='container'>
             <h1 className='check_label'>Best prices: </h1>
             <input
               type='checkbox'
-              checked={discounted}
               className='check'
-              name='discounted'
+              name='discountedFilter'
+              id='discountedFilter'
               onChange={updateFilter}
             />
             <span className='checkmark'></span>

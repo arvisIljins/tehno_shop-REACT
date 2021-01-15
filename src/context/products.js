@@ -30,6 +30,15 @@ const ProductProvider = ({ children }) => {
 
   const [sorted, setSorted] = React.useState([]);
   const [popup, setPopup] = React.useState({ show: false, image: [] });
+  //Filter
+  const [filter, setFilter] = React.useState({
+    search: '',
+    section: 'all',
+    shipping: false,
+    priceFilter: 5000,
+    discountedFilter: false,
+    featuredFilter: false,
+  });
 
   //Open image popup
   const OpenPopup = (index) => {
@@ -37,6 +46,22 @@ const ProductProvider = ({ children }) => {
   };
   const ClosePopup = () => {
     setPopup({ show: false, image: [] });
+  };
+
+  //Update filters
+  const updateFilter = (e) => {
+    const type = e.target.type;
+    const filters = e.target.name;
+    const value = e.target.value;
+    let filterValue;
+
+    if (type === 'checkbox') {
+      filterValue = e.target.checked;
+    } else {
+      filterValue = value;
+    }
+    setFilter({ ...filter, [filters]: filterValue });
+    //console.log(filterValue);
   };
 
   useEffect(() => {
@@ -51,37 +76,44 @@ const ProductProvider = ({ children }) => {
     return () => {};
   }, []);
 
-  //Filter
-  const [filter, setFilter] = React.useState({
-    search: '',
-    section: 'all',
-    shipping: true,
-    price: 200,
-    discounted: false,
-    featured: false,
-  });
-
-  //Update filters
-  const updateFilter = (event) => {
-    const type = event.target.type;
-    const filter = event.target.name;
-    const value = event.target.value;
-    let filterValue;
-
-    type === 'checkbox'
-      ? (filterValue = event.target.checked)
-      : (filterValue = value);
-    setFilter({ ...filter, [filter]: filterValue });
-  };
-
-  useEffect(() => {
-    let newProducts = [...products].sort((a, b) => (a.price = b.price));
+  React.useLayoutEffect(() => {
+    let newProducts = [...products].sort((a, b) => a.price - b.price);
     // Filter logic
-    const { search, section, shipping, price, discounted, featured } = filter;
+    const {
+      search,
+      section,
+      shipping,
+      priceFilter,
+      discountedFilter,
+      featuredFilter,
+    } = filter;
+
     if (section !== 'all') {
       newProducts = newProducts.filter((item) => item.category === section);
     }
+    if (search !== '') {
+      newProducts = newProducts.filter((item) => {
+        let title = item.title.toLowerCase().trim();
+        return title.startsWith(search) ? item : null;
+      });
+    }
 
+    if (featuredFilter !== false) {
+      newProducts = newProducts.filter(
+        (item) => item.featured === featuredFilter
+      );
+    }
+    if (shipping !== false) {
+      newProducts = newProducts.filter((item) => item.Shipping === null);
+    }
+
+    if (discountedFilter !== false) {
+      newProducts = newProducts.filter((item) => item.discountPrice != null);
+    }
+
+    if (priceFilter !== 5000) {
+      newProducts = newProducts.filter((item) => item.price < priceFilter);
+    }
     setPage(0);
     setSorted(paginate(newProducts));
   }, [filter, products]);
