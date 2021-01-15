@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ProductContext } from '../../context/products';
 import ProductList from './ProductList';
-
+import noResult from '../../images/noResult.png';
 const PageProducts = () => {
   const { sorted, page, changePage } = useContext(ProductContext);
   //console.log(sorted);
@@ -45,7 +45,9 @@ const PageProducts = () => {
       )}
     </Section>
   ) : (
-    <NoItemsTitle> THERE ARE NO PRODUCTS MATCHING YOUR PARAMETERS</NoItemsTitle>
+    <NoItemsTitle>
+      <img className='noResult' src={noResult} alt='noResult'></img>
+    </NoItemsTitle>
   );
 };
 
@@ -84,8 +86,12 @@ const PageContainer = styled.div`
 `;
 
 const NoItemsTitle = styled.h1`
-  text-align: center;
-  font-size: 4rem;
+  margin: 0 auto;
+  align-self: center;
+
+  .noResult {
+    width: 100%;
+  }
 `;
 const Section = styled.section`
   width: 80%;
