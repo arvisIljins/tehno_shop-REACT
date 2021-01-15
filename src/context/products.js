@@ -74,11 +74,17 @@ const ProductProvider = ({ children }) => {
     setFilter({ ...filter, [filter]: filterValue });
   };
 
-  /* useEffect(() => {
+  useEffect(() => {
     let newProducts = [...products].sort((a, b) => (a.price = b.price));
+    // Filter logic
+    const { search, section, shipping, price, discounted, featured } = filter;
+    if (section !== 'all') {
+      newProducts = newProducts.filter((item) => item.category === section);
+    }
+
     setPage(0);
     setSorted(paginate(newProducts));
-  }, [filter, products]);*/
+  }, [filter, products]);
 
   //Change page
   const changePage = (index) => {
