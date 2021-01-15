@@ -15,6 +15,7 @@ import PrivateRoute from './components/PrivateRoute';
 import StripeCard from './components/cart/StripeCard';
 import ScrollButton from './components/ScrollButton';
 import ImagePopUp from './components/ImagePopUp';
+import Contacts from './pages/Contacts';
 function App() {
   return (
     <div>
@@ -43,6 +44,9 @@ function App() {
           </Route>
           <Route path='/cart'>
             <Cart />
+          </Route>
+          <Route path='/contacts'>
+            <Contacts />
           </Route>
           <PrivateRoute path='/checkout'>
             <StripeCard />
