@@ -1,5 +1,5 @@
 
-<h1>Book your pizza! App made with Flutter and Firebase.</h1>
+<h1>TehnoShop.com Fully functional online shop made with React.</h1>
 <p>Fully functional online shop. Where you can find your favorite product. Yo can login or register to page and buy your chosen product. App builded with React frontend and Strapi API for backend. All arders are collected in backend, and payments handled with Stripe.
  What is React? - React is an open-source, front end, JavaScript library for building user interfaces or UI components. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.
 What is Strapi? - Strapi is a flexible, open-source Headless CMS that gives developers the freedom to choose their favorite tools and frameworks while also allowing editors to easily manage and distribute their content.  
