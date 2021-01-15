@@ -5,7 +5,7 @@ import ProductList from './ProductList';
 
 const PageProducts = () => {
   const { sorted, page, changePage } = useContext(ProductContext);
-  console.log(sorted);
+  //console.log(sorted);
   return sorted[page] ? (
     <Section>
       <ProductList products={sorted[page]} />

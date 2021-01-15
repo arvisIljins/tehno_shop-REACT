@@ -27,14 +27,7 @@ const ProductProvider = ({ children }) => {
   const [products, setProducts] = React.useState([]);
   const [featured, setFeatured] = React.useState([]);
   const [page, setPage] = React.useState([0]);
-  const [filter, setFilter] = React.useState({
-    search: '',
-    section: 'all',
-    shipping: true,
-    price: 200,
-    discounted: false,
-    featured: false,
-  });
+
   const [sorted, setSorted] = React.useState([]);
   const [popup, setPopup] = React.useState({ show: false, image: [] });
 
@@ -44,11 +37,6 @@ const ProductProvider = ({ children }) => {
   };
   const ClosePopup = () => {
     setPopup({ show: false, image: [] });
-  };
-
-  //Update filters
-  const updateFilter = (e) => {
-    console.log(e);
   };
 
   useEffect(() => {
@@ -62,6 +50,35 @@ const ProductProvider = ({ children }) => {
     });
     return () => {};
   }, []);
+
+  //Filter
+  const [filter, setFilter] = React.useState({
+    search: '',
+    section: 'all',
+    shipping: true,
+    price: 200,
+    discounted: false,
+    featured: false,
+  });
+
+  //Update filters
+  const updateFilter = (event) => {
+    const type = event.target.type;
+    const filter = event.target.name;
+    const value = event.target.value;
+    let filterValue;
+
+    type === 'checkbox'
+      ? (filterValue = event.target.checked)
+      : (filterValue = value);
+    setFilter({ ...filter, [filter]: filterValue });
+  };
+
+  /* useEffect(() => {
+    let newProducts = [...products].sort((a, b) => (a.price = b.price));
+    setPage(0);
+    setSorted(paginate(newProducts));
+  }, [filter, products]);*/
 
   //Change page
   const changePage = (index) => {

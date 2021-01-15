@@ -52,7 +52,7 @@ const ProductFilter = () => {
               type='text'
               value={search}
               className='slider'
-              id='search'
+              name='search'
               onChange={updateFilter}
             />
           </div>
@@ -61,7 +61,6 @@ const ProductFilter = () => {
             <label htmlFor='search'>Category:</label>
             <select
               name='section'
-              id='section'
               className='slider'
               value={section}
               onChange={updateFilter}
@@ -75,57 +74,53 @@ const ProductFilter = () => {
             <input
               type='range'
               min='1'
-              max='1000'
+              max='5000'
               value={price}
               className='slider'
-              id='myRange'
+              name='range'
               onChange={updateFilter}
             />
           </div>
 
           {/* Shipping */}
-          <div className='container'>
-            <label htmlFor='search' className='check_label'>
-              Free shipping:
-            </label>
+
+          <label className='container'>
+            <h1 className='check_label'>Free shipping: </h1>
             <input
               type='checkbox'
               checked={shipping}
               className='check'
-              id='shipping'
+              name='shipping'
               onChange={updateFilter}
             />
-            <span class='checkmark'></span>
-          </div>
+            <span className='checkmark'></span>
+          </label>
           {/* Featured*/}
-          <div className='container'>
-            <label htmlFor='search' className='check_label'>
-              We suggest:
-            </label>
+
+          <label className='container'>
+            <h1 className='check_label'>We suggest: </h1>
             <input
               type='checkbox'
               checked={featured}
               className='check'
-              id='featured'
+              name='featured'
               onChange={updateFilter}
             />
-            <span class='checkmark'></span>
-          </div>
-
+            <span className='checkmark'></span>
+          </label>
           {/* Discounted */}
-          <div className='container'>
-            <label htmlFor='search' className='check_label'>
-              Best prices:
-            </label>
+
+          <label className='container'>
+            <h1 className='check_label'>Best prices: </h1>
             <input
               type='checkbox'
               checked={discounted}
               className='check'
-              id='featured'
+              name='discounted'
               onChange={updateFilter}
             />
-            <span class='checkmark'></span>
-          </div>
+            <span className='checkmark'></span>
+          </label>
         </form>
         <h4 className='filter_title'>Products found: {sorted.flat().length}</h4>
       </div>
@@ -303,7 +298,8 @@ const Section = styled.section`
     display: block;
   }
   .check_label {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    font-weight: 500;
   }
 
   @media screen and (max-width: 68.75em) {
