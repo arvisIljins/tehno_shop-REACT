@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import emailjs from 'emailjs-com';
-import { IoIosCloseCircle } from 'react-icons/io';
 import { TiArrowBackOutline } from 'react-icons/ti';
-import { BiPhone } from 'react-icons/bi';
-import { FiMail } from 'react-icons/fi';
 import PageTransition from '../components/PageTransition';
 export default class Contacts extends Component {
   constructor() {
@@ -48,6 +45,7 @@ export default class Contacts extends Component {
 
     return (
       <PageTransition>
+        <SectionTile>Contact us</SectionTile>
         <Form className='contact-form' onSubmit={sendEmail}>
           <div className='form__group'>
             <input
@@ -194,4 +192,10 @@ const Form = styled.form`
       width: 20rem;
     }
   }
+`;
+const SectionTile = styled.h1`
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 2rem;
 `;
