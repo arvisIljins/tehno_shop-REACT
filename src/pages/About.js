@@ -18,7 +18,7 @@ const About = () => {
         </div>
         <div className='container__Text'>
           <p>
-            Electronics, branch of physics and electrical engineering that deals
+            Electronics branch of physics and electrical engineering that deals
             with the emission, behaviour, and effects of electrons and with
             electronic devices. Electronics encompasses an exceptionally broad
             range of technology. The term originally was applied to the study of
